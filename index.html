@@ -488,17 +488,8 @@
       <section id="sec-aktualnosci">
         <h2>Aktualności</h2>
         <p class="lede">Bieżące ogłoszenia duszpasterskie i informacje z życia misji.</p>
-
-        <div class="placeholder-card">
-          <span class="tag">DO UZUPEŁNIENIA</span>
-          Miejsce na najnowsze ogłoszenie — np. zmianę godziny Mszy, informację o rekolekcjach lub wizycie duszpasterskiej.
-        </div>
-        <div class="placeholder-card">
-          <span class="tag">DO UZUPEŁNIENIA</span>
-          Miejsce na kolejne ogłoszenie parafialne.
-        </div>
-
-        <p class="note">Ta sekcja jest przygotowana do regularnej aktualizacji — prześlij konkretne, aktualne ogłoszenia, a zostaną tu uzupełnione realną treścią.</p>
+        <div id="announcements" aria-live="polite"><p class="note">Wczytywanie ogłoszeń…</p></div>
+        <noscript>Włącz JavaScript, aby wyświetlić aktualne ogłoszenia.</noscript>
       </section>
 
       <!-- WYDARZENIA -->
@@ -659,6 +650,55 @@
       window.scrollTo({top:0, behavior:'smooth'});
     });
   });
+</script>
+
+
+<script>
+// Pages CMS: content is stored separately from the page design.
+(async function loadAnnouncements() {
+  const container = document.getElementById('announcements');
+  try {
+    const response = await fetch('./content/aktualnosci.json', {cache: 'no-cache'});
+    if (!response.ok) throw new Error('Announcements request failed');
+    const data = await response.json();
+    const items = Array.isArray(data.items) ? data.items : [];
+    const published = items.filter(item => item && item.published === true && typeof item.title === 'string' && typeof item.body === 'string');
+    published.sort((a, b) => String(b.date || '').localeCompare(String(a.date || '')));
+    const fragment = document.createDocumentFragment();
+    for (const item of published) {
+      const article = document.createElement('article');
+      article.className = 'contact-card';
+      article.style.margin = '20px 0';
+      const title = document.createElement('h3');
+      title.textContent = item.title;
+      article.append(title);
+      if (typeof item.date === 'string' && /^\d{4}-\d{2}-\d{2}/.test(item.date)) {
+        const date = document.createElement('time');
+        const day = item.date.slice(0, 10);
+        date.dateTime = day;
+        date.textContent = day.split('-').reverse().join('.');
+        date.className = 'note';
+        article.append(date);
+      }
+      const body = document.createElement('p');
+      body.style.whiteSpace = 'pre-wrap';
+      body.style.overflowWrap = 'anywhere';
+      body.textContent = item.body;
+      article.append(body);
+      fragment.append(article);
+    }
+    if (!published.length) {
+      const empty = document.createElement('p');
+      empty.className = 'note';
+      empty.textContent = 'Obecnie brak nowych ogłoszeń.';
+      fragment.append(empty);
+    }
+    container.replaceChildren(fragment);
+  } catch (error) {
+    container.textContent = 'Nie udało się wczytać ogłoszeń. Odśwież stronę lub spróbuj ponownie później.';
+    console.error('Loading announcements:', error);
+  }
+})();
 </script>
 
 </body>
