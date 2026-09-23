@@ -287,6 +287,105 @@
     transition:box-shadow 0.15s ease, border-color 0.15s ease;
   }
   .contact-card:hover{ box-shadow:0 8px 24px rgba(78,14,25,0.08); border-color:var(--gold); }
+
+  /* Aktualności: centered column, left-aligned text */
+  #announcements{
+    max-width:760px;
+    margin:28px auto 0;
+    text-align:left;
+  }
+  #announcements .contact-card{ width:100%; }
+
+  /* Editable Wydarzenia */
+  .events-list{
+    display:grid;
+    grid-template-columns:repeat(2, minmax(0, 1fr));
+    gap:18px;
+    margin-top:28px;
+  }
+  .event-card{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:20px;
+    overflow:hidden;
+  }
+  .event-card img{
+    display:block;
+    width:100%;
+    height:auto;
+    max-height:360px;
+    object-fit:contain;
+    border-radius:9px;
+    margin-bottom:16px;
+    cursor:zoom-in;
+    background:rgba(255,255,255,0.35);
+  }
+  .event-meta{
+    margin:0 0 10px 0;
+    font-size:0.82rem;
+    color:var(--ink-soft);
+    line-height:1.5;
+  }
+  .event-card p:last-child{ margin-bottom:0; }
+
+  .image-lightbox{
+    position:fixed;
+    inset:0;
+    z-index:9999;
+    display:none;
+    overflow:auto;
+    padding:24px;
+    background:rgba(10,12,16,0.94);
+  }
+  .image-lightbox.open{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .image-lightbox.zoomed{
+    display:block;
+    text-align:center;
+  }
+  .image-lightbox img{
+    display:block;
+    max-width:96vw;
+    max-height:92vh;
+    width:auto;
+    height:auto;
+    margin:auto;
+    object-fit:contain;
+    box-shadow:0 18px 60px rgba(0,0,0,0.45);
+    cursor:zoom-in;
+  }
+  .image-lightbox.zoomed img{
+    max-width:none;
+    max-height:none;
+    width:auto;
+    height:auto;
+    cursor:zoom-out;
+    margin:70px auto 24px;
+  }
+  .image-lightbox-close{
+    position:absolute;
+    top:16px;
+    right:18px;
+    width:42px;
+    height:42px;
+    border:1px solid rgba(255,255,255,0.45);
+    border-radius:50%;
+    background:rgba(0,0,0,0.35);
+    color:#fff;
+    font-size:28px;
+    line-height:1;
+    cursor:pointer;
+  }
+  .events-static-title{ margin-top:28px; }
+  .events-upcoming-title{ margin-top:36px; }
+  #sec-wydarzenia .icon-grid{
+    grid-template-columns:repeat(3, minmax(0, 1fr));
+    width:100%;
+  }
   .contact-card .icon{
     width:36px; height:36px; border-radius:9px;
     background:rgba(122,22,38,0.08);
@@ -334,6 +433,8 @@
     .hero h1{ font-size:2rem; }
     .fact-row{ flex-direction:column; }
     .icon-grid{ grid-template-columns:1fr; }
+    .events-list{ grid-template-columns:1fr; }
+    #sec-wydarzenia .icon-grid{ grid-template-columns:1fr; }
     .contact-grid{ grid-template-columns:1fr; }
     footer.page-foot{ padding:20px 22px 40px 22px; }
   }
@@ -497,25 +598,11 @@
         <h2>Wydarzenia</h2>
         <p class="lede">Życie wspólnoty nie kończy się na niedzielnej Mszy świętej.</p>
 
-        <div class="icon-grid">
-          <div class="icon-item">
-            <div class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg></div>
-            <div><strong>Katecheza dla dzieci</strong><p>W soboty w roku szkolnym, godz. 10:00–12:00, w Domu Polskim (czasem w kościele Sainte-Ségolène), z wyjątkiem wakacji i ferii.</p></div>
-          </div>
-          <div class="icon-item">
-            <div class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><path d="M6 2v3M10 2v3M14 2v3"/></svg></div>
-            <div><strong>Spotkanie przy kawie</strong><p>Po niedzielnej Mszy świętej, w Domu Polskim — okazja do rozmowy i integracji wspólnoty.</p></div>
-          </div>
-          <div class="icon-item">
-            <div class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M12 2l2.5 5 5.5.7-4 3.9 1 5.5L12 14.8 7 17.1l1-5.5-4-3.9L9.5 7z"/></svg></div>
-            <div><strong>Uroczystości liturgiczne</strong><p>Boże Narodzenie, Wielkanoc i inne święta obchodzone są wspólnie, często z dodatkowymi nabożeństwami.</p></div>
-          </div>
-        </div>
+        <h3 class="events-static-title">Stałe elementy życia wspólnoty</h3>
+        <div id="community-items" class="icon-grid" aria-live="polite"><p class="note">Wczytywanie informacji…</p></div>
 
-        <div class="placeholder-card" style="margin-top:22px;">
-          <span class="tag">DO UZUPEŁNIENIA</span>
-          Miejsce na konkretne, nadchodzące wydarzenie z datą — np. rekolekcje, pielgrzymkę, festyn parafialny.
-        </div>
+        <h3 class="events-upcoming-title">Nadchodzące i ostatnie wydarzenia</h3>
+        <div id="events" class="events-list" aria-live="polite"><p class="note">Wczytywanie wydarzeń…</p></div>
       </section>
 
       <!-- MISJA -->
@@ -703,6 +790,196 @@
   } catch (error) {
     container.textContent = 'Nie udało się wczytać ogłoszeń. Odśwież stronę lub spróbuj ponownie później.';
     console.error('Loading announcements:', error);
+  }
+})();
+</script>
+
+  <div id="image-lightbox" class="image-lightbox" role="dialog" aria-modal="true" aria-label="Podgląd zdjęcia">
+    <button type="button" class="image-lightbox-close" aria-label="Zamknij">×</button>
+    <img id="image-lightbox-img" alt="">
+  </div>
+
+<script>
+const imageLightbox = document.getElementById('image-lightbox');
+const imageLightboxImg = document.getElementById('image-lightbox-img');
+const imageLightboxClose = document.querySelector('.image-lightbox-close');
+
+function openImageLightbox(src, alt) {
+  imageLightboxImg.src = src;
+  imageLightboxImg.alt = alt || '';
+  imageLightbox.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  imageLightboxClose.focus();
+}
+
+function closeImageLightbox() {
+  imageLightbox.classList.remove('open', 'zoomed');
+  imageLightboxImg.removeAttribute('src');
+  document.body.style.overflow = '';
+  imageLightbox.scrollTop = 0;
+  imageLightbox.scrollLeft = 0;
+}
+
+imageLightboxClose.addEventListener('click', closeImageLightbox);
+imageLightboxImg.addEventListener('click', (event) => {
+  event.stopPropagation();
+  const zoomed = imageLightbox.classList.toggle('zoomed');
+  if (!zoomed) {
+    imageLightbox.scrollTop = 0;
+    imageLightbox.scrollLeft = 0;
+  }
+});
+imageLightbox.addEventListener('click', (event) => {
+  if (event.target === imageLightbox) closeImageLightbox();
+});
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape' && imageLightbox.classList.contains('open')) closeImageLightbox();
+});
+</script>
+
+<script>
+// Pages CMS: editable events.
+(async function loadEvents() {
+  const container = document.getElementById('events');
+  if (!container) return;
+
+  try {
+    const response = await fetch('./content/wydarzenia.json', { cache: 'no-store' });
+    if (!response.ok) throw new Error('Wydarzenia request failed: ' + response.status);
+
+    const data = await response.json();
+
+    const communityContainer = document.getElementById('community-items');
+    const communityItems = Array.isArray(data.communityItems) ? data.communityItems : [];
+    const iconSvgs = {
+      book: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>',
+      coffee: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><path d="M6 2v3M10 2v3M14 2v3"/></svg>',
+      star: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M12 2l2.5 5 5.5.7-4 3.9 1 5.5L12 14.8 7 17.1l1-5.5-4-3.9L9.5 7z"/></svg>',
+      calendar: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="1.6"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>',
+      cross: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M12 2v20M7 7h10"/></svg>',
+      people: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="1.6"><circle cx="9" cy="8" r="3"/><path d="M3 21c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="17" cy="9" r="2"/><path d="M16 15c2.8 0 5 2.2 5 5"/></svg>',
+      church: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M12 2v5M9.5 4.5h5"/><path d="M5 22V10l7-4 7 4v12"/><path d="M9 22v-6h6v6"/></svg>'
+    };
+
+    if (communityContainer) {
+      const communityFragment = document.createDocumentFragment();
+      for (const item of communityItems.filter(item => item && item.visible !== false)) {
+        const card = document.createElement('div');
+        card.className = 'icon-item';
+
+        const icon = document.createElement('div');
+        icon.className = 'icon';
+        icon.innerHTML = iconSvgs[item.icon] || iconSvgs.calendar;
+
+        const content = document.createElement('div');
+        const title = document.createElement('strong');
+        title.textContent = typeof item.title === 'string' ? item.title : '';
+        const body = document.createElement('p');
+        body.textContent = typeof item.body === 'string' ? item.body : '';
+        content.append(title, body);
+
+        card.append(icon, content);
+        communityFragment.append(card);
+      }
+
+      if (!communityFragment.childNodes.length) {
+        const empty = document.createElement('p');
+        empty.className = 'note';
+        empty.textContent = 'Brak stałych informacji.';
+        communityFragment.append(empty);
+      }
+
+      communityContainer.replaceChildren(communityFragment);
+    }
+
+    const items = Array.isArray(data.items) ? data.items : [];
+    const todayKey = new Date().toISOString().slice(0, 10);
+
+    const published = items
+      .map((item, index) => ({ item, index }))
+      .filter(({ item }) =>
+        item &&
+        item.published === true &&
+        typeof item.title === 'string' &&
+        typeof item.body === 'string'
+      )
+      .sort((a, b) => {
+        const aDate = typeof a.item.date === 'string' ? a.item.date.slice(0, 10) : '';
+        const bDate = typeof b.item.date === 'string' ? b.item.date.slice(0, 10) : '';
+        const aFuture = aDate >= todayKey;
+        const bFuture = bDate >= todayKey;
+
+        if (aFuture !== bFuture) return aFuture ? -1 : 1;
+        if (aFuture && bFuture) return aDate.localeCompare(bDate) || b.index - a.index;
+        return bDate.localeCompare(aDate) || b.index - a.index;
+      })
+      .map(({ item }) => item);
+
+    const fragment = document.createDocumentFragment();
+
+    for (const item of published) {
+      const article = document.createElement('article');
+      article.className = 'event-card';
+
+      if (typeof item.image === 'string' && item.image.trim()) {
+        const img = document.createElement('img');
+        const imagePath = item.image.trim().replace(/^\/+/, '');
+        img.src = new URL(imagePath, document.baseURI).href;
+        img.alt = item.title;
+        img.loading = 'lazy';
+        img.tabIndex = 0;
+        img.setAttribute('role', 'button');
+        img.setAttribute('aria-label', 'Otwórz zdjęcie: ' + item.title);
+        img.addEventListener('click', () => openImageLightbox(img.src, img.alt));
+        img.addEventListener('keydown', (event) => {
+          if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            openImageLightbox(img.src, img.alt);
+          }
+        });
+        img.addEventListener('error', () => img.remove(), { once: true });
+        article.append(img);
+      }
+
+      const title = document.createElement('h3');
+      title.textContent = item.title;
+      article.append(title);
+
+      const metaParts = [];
+      if (typeof item.date === 'string' && /^\d{4}-\d{2}-\d{2}/.test(item.date)) {
+        const day = item.date.slice(0, 10);
+        metaParts.push(day.split('-').reverse().join('.'));
+      }
+      if (typeof item.time === 'string' && item.time.trim()) metaParts.push(item.time.trim());
+      if (typeof item.place === 'string' && item.place.trim()) metaParts.push(item.place.trim());
+
+      if (metaParts.length) {
+        const meta = document.createElement('p');
+        meta.className = 'event-meta';
+        meta.textContent = metaParts.join(' · ');
+        article.append(meta);
+      }
+
+      const body = document.createElement('p');
+      body.style.whiteSpace = 'pre-wrap';
+      body.style.overflowWrap = 'anywhere';
+      body.textContent = item.body;
+      article.append(body);
+
+      fragment.append(article);
+    }
+
+    if (!published.length) {
+      const empty = document.createElement('p');
+      empty.className = 'note';
+      empty.textContent = 'Obecnie brak opublikowanych wydarzeń.';
+      fragment.append(empty);
+    }
+
+    container.replaceChildren(fragment);
+  } catch (error) {
+    container.textContent = 'Nie udało się wczytać wydarzeń. Odśwież stronę lub spróbuj ponownie później.';
+    console.error('Loading events:', error);
   }
 })();
 </script>
