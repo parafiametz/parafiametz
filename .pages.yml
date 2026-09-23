@@ -1,3 +1,12 @@
+media:
+  - name: images
+    label: Zdjęcia
+    input: media/images
+    output: /media/images
+    categories: [image]
+    extensions: [jpg, jpeg, png, webp]
+    rename: safe
+
 content:
   - name: aktualnosci
     label: Aktualności
@@ -8,7 +17,8 @@ content:
       delete: false
     fields:
       - name: items
-        label: Wpisy
+        label: Ogłoszenia
+        description: Aby dodać nowe ogłoszenie, kliknij przycisk „Add an item” poniżej.
         type: object
         list:
           collapsible:
@@ -31,6 +41,101 @@ content:
             label: Treść
             type: text
             required: true
+          - name: published
+            label: Opublikowane
+            type: boolean
+            default: false
+
+  - name: wydarzenia
+    label: Wydarzenia
+    type: file
+    path: content/wydarzenia.json
+    format: json
+    operations:
+      delete: false
+    fields:
+      - name: communityItems
+        label: Stałe elementy życia wspólnoty
+        description: Edytuj, dodawaj i przeciągaj elementy, aby zmienić ich kolejność na stronie.
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{title}"
+        fields:
+          - name: title
+            label: Tytuł
+            type: string
+            required: true
+          - name: body
+            label: Opis
+            type: text
+            required: true
+          - name: icon
+            label: Ikona
+            type: select
+            required: true
+            options:
+              values:
+                - name: book
+                  label: Katecheza / książka
+                - name: coffee
+                  label: Kawa / spotkanie
+                - name: star
+                  label: Uroczystość / gwiazda
+                - name: calendar
+                  label: Kalendarz / termin
+                - name: cross
+                  label: Krzyż
+                - name: people
+                  label: Wspólnota
+                - name: church
+                  label: Kościół
+          - name: visible
+            label: Widoczne na stronie
+            type: boolean
+            default: true
+
+      - name: items
+        label: Wydarzenia
+        description: Dodaj wydarzenie, uzupełnij dane i włącz „Opublikowane”, gdy ma pojawić się na stronie.
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{title} — {date}"
+        fields:
+          - name: title
+            label: Tytuł
+            type: string
+            required: true
+          - name: date
+            label: Data
+            type: date
+            required: true
+            options:
+              time: false
+              format: yyyy-MM-dd
+          - name: time
+            label: Godzina
+            type: string
+            description: Opcjonalnie, np. 15:00.
+          - name: place
+            label: Miejsce
+            type: string
+            description: Opcjonalnie.
+          - name: body
+            label: Opis
+            type: text
+            required: true
+          - name: image
+            label: Zdjęcie
+            type: image
+            required: false
+            options:
+              media: images
+              extensions: [jpg, jpeg, png, webp]
+              rename: safe
           - name: published
             label: Opublikowane
             type: boolean
