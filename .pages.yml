@@ -53,7 +53,7 @@ content:
             list:
               collapsible:
                 collapsed: true
-                summary: "{index}. {label}"
+                summary: "{index}."
             fields:
               - name: label
                 label: Etykieta
