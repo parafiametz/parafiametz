@@ -32,6 +32,7 @@
   "priests": [
     {
       "photo": "/media/images/ksiadz-jan.jpeg",
+      "title": "Ks.",
       "firstName": "Jan",
       "lastName": "Cetnar",
       "visible": true
