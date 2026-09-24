@@ -31,6 +31,7 @@
   "priestsTitle": "Duszpasterz",
   "priests": [
     {
+      "photo": "/media/images/ksiadz-jan.jpeg",
       "firstName": "Jan",
       "lastName": "Cetnar",
       "visible": true
