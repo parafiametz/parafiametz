@@ -641,7 +641,18 @@
     .content section{ animation:none; }
     .hero{ transition:none; }
   }
+
+  .announcement-body.is-collapsed{ max-height:22rem; overflow:hidden; position:relative; }
+  .announcement-body.is-collapsed::after{ content:""; position:absolute; left:0; right:0; bottom:0; height:5rem; background:linear-gradient(transparent,var(--paper)); pointer-events:none; }
+  .text-toggle,.archive-toggle{ margin-top:10px; border:0; background:none; color:var(--burgundy); font:600 .86rem 'Libre Franklin',sans-serif; cursor:pointer; padding:4px 0; }
+  .text-toggle:hover,.archive-toggle:hover{ text-decoration:underline; }
+  .past-events{ margin-top:28px; padding-top:20px; border-top:1px solid var(--line); }
+  .past-events[hidden]{ display:none; }
+  .past-events h3{ font-size:1.35rem; margin-bottom:12px; }
 </style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Church","name":"Parafia w Metz","url":"https://parafiametz.fr/","address":{"@type":"PostalAddress","streetAddress":"14, place Jeanne d'Arc","postalCode":"57000","addressLocality":"Metz","addressCountry":"FR"}}
+</script>
 </head>
 <body>
 
@@ -979,9 +990,19 @@ sainte.segolene_metz@orange.fr</p>
 
       document.querySelector('nav.menu').classList.remove('open');
       if (menuToggle) menuToggle.setAttribute('aria-expanded', 'false');
+      if (location.hash !== '#' + target) history.pushState(null, '', '#' + target);
       window.scrollTo({top:0, behavior:'smooth'});
     });
   });
+
+  function openSectionFromHash() {
+    const target = location.hash.slice(1);
+    const button = target ? document.querySelector('nav.menu button[data-section="' + target + '"]') : null;
+    if (button) button.click();
+  }
+  window.addEventListener('hashchange', openSectionFromHash);
+  window.addEventListener('popstate', openSectionFromHash);
+  if (location.hash) openSectionFromHash();
 </script>
 
 
@@ -1087,6 +1108,22 @@ function renderSafeRichText(container, value) {
       body.className = 'announcement-body align-' + alignment;
       renderSafeRichText(body, item.body);
       article.append(body);
+      requestAnimationFrame(() => {
+        if (body.scrollHeight > 430) {
+          body.classList.add('is-collapsed');
+          const toggle = document.createElement('button');
+          toggle.type = 'button';
+          toggle.className = 'text-toggle';
+          toggle.textContent = 'Czytaj więcej';
+          toggle.setAttribute('aria-expanded', 'false');
+          toggle.addEventListener('click', () => {
+            const collapsed = body.classList.toggle('is-collapsed');
+            toggle.textContent = collapsed ? 'Czytaj więcej' : 'Zwiń';
+            toggle.setAttribute('aria-expanded', String(!collapsed));
+          });
+          article.append(toggle);
+        }
+      });
       fragment.append(article);
     }
     if (!published.length) {
@@ -1094,6 +1131,25 @@ function renderSafeRichText(container, value) {
       empty.className = 'note';
       empty.textContent = 'Obecnie brak nowych aktualności.';
       fragment.append(empty);
+    }
+    if (pastCount) {
+      const toggle = document.createElement('button');
+      toggle.type = 'button';
+      toggle.className = 'archive-toggle';
+      toggle.textContent = 'Minione wydarzenia (' + pastCount + ')';
+      toggle.setAttribute('aria-expanded', 'false');
+      const past = document.createElement('div');
+      past.className = 'past-events';
+      past.hidden = true;
+      const heading = document.createElement('h3');
+      heading.textContent = 'Minione wydarzenia';
+      past.append(heading, pastFragment);
+      toggle.addEventListener('click', () => {
+        past.hidden = !past.hidden;
+        toggle.setAttribute('aria-expanded', String(!past.hidden));
+        toggle.textContent = past.hidden ? 'Minione wydarzenia (' + pastCount + ')' : 'Ukryj minione wydarzenia';
+      });
+      fragment.append(toggle, past);
     }
     container.replaceChildren(fragment);
   } catch (error) {
@@ -1224,6 +1280,8 @@ document.addEventListener('keydown', (event) => {
       .map(({ item }) => item);
 
     const fragment = document.createDocumentFragment();
+    const pastFragment = document.createDocumentFragment();
+    let pastCount = 0;
 
     for (const item of published) {
       const article = document.createElement('article');
@@ -1275,7 +1333,8 @@ document.addEventListener('keydown', (event) => {
       body.textContent = item.body;
       article.append(body);
 
-      fragment.append(article);
+      const isPast = cmsDateKey(item.date) && cmsDateKey(item.date) < todayKey;
+      if (isPast) { pastFragment.append(article); pastCount++; } else { fragment.append(article); }
     }
 
     if (!published.length) {
