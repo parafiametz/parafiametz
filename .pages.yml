@@ -61,80 +61,6 @@ content:
           switcher: false
           media: false
 
-  - name: misja
-    label: Nasza Misja
-    type: file
-    path: content/misja.json
-    format: json
-    operations:
-      delete: false
-    fields:
-      - name: lede
-        label: Wprowadzenie
-        type: text
-        required: true
-      - name: paragraph1
-        label: Pierwszy akapit
-        type: text
-        required: true
-      - name: paragraph2
-        label: Drugi akapit
-        type: text
-        required: true
-      - name: callout
-        label: Wyróżniony tekst
-        type: text
-        required: true
-
-  - name: kosciol
-    label: Kościół Sainte-Ségolène
-    type: file
-    path: content/kosciol.json
-    format: json
-    operations:
-      delete: false
-    fields:
-      - name: lede
-        label: Wprowadzenie
-        type: text
-        required: true
-      - name: paragraph1
-        label: Pierwszy akapit
-        type: text
-        required: true
-      - name: paragraph2
-        label: Drugi akapit
-        type: rich-text
-        required: true
-        options:
-          format: html
-          switcher: false
-          media: false
-      - name: addressLabel
-        label: Etykieta adresu
-        type: string
-        required: true
-      - name: addressValue
-        label: Adres kościoła
-        type: string
-        required: true
-      - name: patronLabel
-        label: Etykieta wezwania
-        type: string
-        required: true
-      - name: patronValue
-        label: Wezwanie
-        type: string
-        required: true
-      - name: feastLabel
-        label: Etykieta odpustu
-        type: string
-        required: true
-      - name: feastValue
-        label: Data odpustu
-        type: string
-        required: true
-
   - name: msze
     label: Msze i nabożeństwa
     type: file
@@ -355,6 +281,31 @@ content:
             type: boolean
             default: false
 
+  - name: misja
+    label: Nasza Misja
+    type: file
+    path: content/misja.json
+    format: json
+    operations:
+      delete: false
+    fields:
+      - name: lede
+        label: Wprowadzenie
+        type: text
+        required: true
+      - name: paragraph1
+        label: Pierwszy akapit
+        type: text
+        required: true
+      - name: paragraph2
+        label: Drugi akapit
+        type: text
+        required: true
+      - name: callout
+        label: Wyróżniony tekst
+        type: text
+        required: true
+
   - name: sakramenty
     label: Sakramenty
     type: file
@@ -414,6 +365,55 @@ content:
         label: Informacja pod listą
         type: text
         required: false
+
+  - name: kosciol
+    label: Kościół Sainte-Ségolène
+    type: file
+    path: content/kosciol.json
+    format: json
+    operations:
+      delete: false
+    fields:
+      - name: lede
+        label: Wprowadzenie
+        type: text
+        required: true
+      - name: paragraph1
+        label: Pierwszy akapit
+        type: text
+        required: true
+      - name: paragraph2
+        label: Drugi akapit
+        type: rich-text
+        required: true
+        options:
+          format: html
+          switcher: false
+          media: false
+      - name: addressLabel
+        label: Etykieta adresu
+        type: string
+        required: true
+      - name: addressValue
+        label: Adres kościoła
+        type: string
+        required: true
+      - name: patronLabel
+        label: Etykieta wezwania
+        type: string
+        required: true
+      - name: patronValue
+        label: Wezwanie
+        type: string
+        required: true
+      - name: feastLabel
+        label: Etykieta odpustu
+        type: string
+        required: true
+      - name: feastValue
+        label: Data odpustu
+        type: string
+        required: true
 
   - name: kontakt
     label: Kontakt
