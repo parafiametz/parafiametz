@@ -1017,10 +1017,18 @@ function renderSafeRichText(container, value) {
     const published = items
       .map((item, index) => ({ item, index }))
       .filter(({ item }) => item && item.published === true && typeof item.title === 'string' && typeof item.body === 'string')
-      .sort((a, b) =>
-        String(b.item.date || '').localeCompare(String(a.item.date || '')) ||
-        b.index - a.index
-      )
+      .sort((a, b) => {
+        const dateKey = value => {
+          const raw = String(value || '').trim();
+          if (/^\d{4}-\d{2}-\d{2}/.test(raw)) return raw.slice(0, 10);
+          if (/^\d{2}\/\d{2}\/\d{4}$/.test(raw)) {
+            const [day, month, year] = raw.split('/');
+            return year + '-' + month + '-' + day;
+          }
+          return '';
+        };
+        return dateKey(b.item.date).localeCompare(dateKey(a.item.date)) || b.index - a.index;
+      })
       .map(({ item }) => item);
     const fragment = document.createDocumentFragment();
     for (const item of published) {
@@ -1030,13 +1038,25 @@ function renderSafeRichText(container, value) {
       const title = document.createElement('h3');
       title.textContent = item.title;
       article.append(title);
-      if (typeof item.date === 'string' && /^\d{4}-\d{2}-\d{2}/.test(item.date)) {
-        const date = document.createElement('time');
-        const day = item.date.slice(0, 10);
-        date.dateTime = day;
-        date.textContent = day.split('-').reverse().join('.');
-        date.className = 'note';
-        article.append(date);
+      if (typeof item.date === 'string') {
+        const rawDate = item.date.trim();
+        let isoDate = '';
+        let displayDate = '';
+        if (/^\d{4}-\d{2}-\d{2}/.test(rawDate)) {
+          isoDate = rawDate.slice(0, 10);
+          displayDate = isoDate.split('-').reverse().join('.');
+        } else if (/^\d{2}\/\d{2}\/\d{4}$/.test(rawDate)) {
+          const [day, month, year] = rawDate.split('/');
+          isoDate = year + '-' + month + '-' + day;
+          displayDate = day + '.' + month + '.' + year;
+        }
+        if (displayDate) {
+          const date = document.createElement('time');
+          date.dateTime = isoDate;
+          date.textContent = displayDate;
+          date.className = 'note';
+          article.append(date);
+        }
       }
       const body = document.createElement('div');
       const alignment = ['center', 'right', 'justify'].includes(item.alignment) ? item.alignment : 'left';
