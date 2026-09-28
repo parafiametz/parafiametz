@@ -731,7 +731,7 @@
       <section id="sec-home" class="active">
         <p id="home-lede" class="lede">Od dziesięcioleci Polacy mieszkający w Metz i okolicach Lotaryngii spotykają się tutaj, by modlić się, świętować i podtrzymywać więź z Ojczyzną — w języku, który jest im najbliższy.</p>
 
-        <div class="fact-row">
+        <div class="fact-row" id="home-info-items">
           <div class="fact-pill">
             <div class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
             <div><div id="home-mass-label" class="fact-label">MSZA NIEDZIELNA</div><div id="home-mass-value" class="fact-value">godz. 9:30</div></div>
@@ -1592,8 +1592,31 @@ async function loadEditableSection(path, apply) {
   } catch(error) { console.error('Loading editable section:',error); }
 }
 loadEditableSection('./content/strona-glowna.json', data => {
-  setCmsText('home-lede',data.lede); setCmsText('home-mass-label',data.massLabel); setCmsText('home-mass-value',data.massValue);
-  setCmsText('home-address-label',data.addressLabel); setCmsText('home-address-value',data.addressValue); setCmsText('home-contact-label',data.contactLabel); setCmsText('home-contact-value',data.contactValue);
+  setCmsText('home-lede',data.lede);
+  const infoItems = Array.isArray(data.infoItems) ? data.infoItems.filter(item => item && item.visible !== false) : [];
+  if (infoItems.length) {
+    const fragment = document.createDocumentFragment();
+    for (const item of infoItems) {
+      const pill = document.createElement('div');
+      pill.className = 'fact-pill';
+      const icon = document.createElement('div');
+      icon.className = 'icon';
+      icon.innerHTML = cmsIcon(item.icon, 'church');
+      const text = document.createElement('div');
+      const label = document.createElement('div');
+      label.className = 'fact-label';
+      label.textContent = item.label || '';
+      const value = document.createElement('div');
+      value.className = 'fact-value';
+      value.textContent = item.value || '';
+      text.append(label, value);
+      pill.append(icon, text);
+      fragment.append(pill);
+    }
+    document.getElementById('home-info-items').replaceChildren(fragment);
+  } else if (Array.isArray(data.infoItems)) {
+    document.getElementById('home-info-items').replaceChildren();
+  }
   setCmsText('home-paragraph1',data.paragraph1); setCmsText('home-callout',data.callout);
   if (typeof data.paragraph2==='string') renderSafeRichText(document.getElementById('home-paragraph2'),data.paragraph2);
 });
