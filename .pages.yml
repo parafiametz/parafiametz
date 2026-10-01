@@ -141,7 +141,7 @@ content:
         required: false
 
   - name: aktualnosci
-    label: Aktualności
+    label: Ogłoszenia Duszpasterskie
     type: file
     path: content/aktualnosci.json
     format: json
