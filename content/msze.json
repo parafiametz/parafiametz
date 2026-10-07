@@ -45,6 +45,17 @@
         }
       ],
       "visible": true
+    },
+    {
+      "title": "Pierwsza sobota miesiąca",
+      "icon": "sun",
+      "rows": [
+        {
+          "label": "Pierwsza sobota miesiąca",
+          "text": "Msza święta po polsku o 09:30"
+        }
+      ],
+      "visible": true
     }
   ],
   "note": "Szczegółowy, cotygodniowy harmonogram (miejsce i godziny) może ulec zmianie — prosimy o potwierdzenie w bieżących ogłoszeniach parafialnych lub telefonicznie."
