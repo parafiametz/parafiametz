@@ -33,6 +33,14 @@
       "detailBody": "<p><strong>„Małe kroki – wielka wiara”</strong> to stała inicjatywa duszpasterska naszej parafii, której celem jest wspólne i bardziej świadome przeżywanie wiary w codziennym życiu.</p><p>W ramach tej inicjatywy regularnie proponujemy <strong>małe zadania, gesty i działania</strong>, które mają pomagać nam dostrzegać obecność Boga i drugiego człowieka, pogłębiać naszą relację z Panem Bogiem oraz odważnie wychodzić poza to, co znamy i robimy na co dzień.</p><p>Nie chodzi o wielkie przedsięwzięcia. Czasem będzie to fragment Pisma Świętego, do którego warto wrócić w ciągu tygodnia, innym razem konkretny gest wobec drugiego człowieka, chwila modlitwy, refleksji lub niewielkie wyzwanie. <strong>Małe kroki podejmowane regularnie mogą z czasem prowadzić do wielkiej i dojrzałej wiary.</strong></p><p>Każda kolejna odsłona inicjatywy będzie miała swoje hasło oraz związane z nim zadanie. Zachęcamy, aby nie traktować tych propozycji jako jednorazowych akcji, lecz wracać do nich również w kolejnych dniach i zastanawiać się, do czego poprzez nie zaprasza nas Pan Bóg.</p><p><strong>Pamiętajmy o naszych „małych krokach” także poza murami kościoła.</strong> Wiara nie kończy się wraz z niedzielną Mszą Świętą – możemy przeżywać ją każdego dnia poprzez proste decyzje, słowa i gesty wobec Boga i drugiego człowieka.</p><p>Niech każdy mały krok pomaga nam coraz pełniej odkrywać Boga i budować <strong>wielką wiarę</strong> w naszym życiu i w całej naszej wspólnocie.</p>"
     },
     {
+      "title": "Krąg biblijny",
+      "body": "Wspólne czytanie i rozważanie Ewangelii z najbliższej niedzieli oraz poznawanie sposobów, które pomagają lepiej rozumieć i przeżywać Słowo Boże.",
+      "icon": "book",
+      "visible": true,
+      "detailEnabled": true,
+      "detailBody": "<p>Krąg Biblijny to czas wspólnego spotkania ze Słowem Bożym. Czytamy i rozważamy Ewangelię z najbliższej niedzieli, zatrzymując się nad jej przesłaniem i odkrywając, co Bóg chce powiedzieć do każdego z nas.</p><p>Podczas spotkań poznajemy również różne sposoby i metody czytania Pisma Świętego, które pomagają lepiej je rozumieć, odnosić do codziennego życia i pogłębiać osobistą relację z Bogiem.</p><p>To dobra okazja, aby na chwilę zatrzymać się w codziennym zabieganiu, wsłuchać się w Ewangelię i wspólnie dzielić się refleksją nad Słowem, które żyje i przemienia nasze życie.</p><p>Zapraszamy wszystkich – zarówno osoby, które już uczestniczą w Kręgu Biblijnym, jak i tych, którzy chcieliby dołączyć po raz pierwszy. Nie jest wymagane wcześniejsze przygotowanie ani szczególna znajomość Pisma Świętego.</p>"
+    },
+    {
       "title": "Spotkanie tematyczne",
       "body": "Comiesięczne spotkania poświęcone ważnym i często trudnym pytaniom dotyczącym wiary, Kościoła i naszego życia. Wspólnie szukamy odpowiedzi, rozmawiamy i pogłębiamy rozumienie naszej wiary.",
       "icon": "book",
