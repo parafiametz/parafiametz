@@ -250,6 +250,20 @@ content:
             label: Widoczne na stronie
             type: boolean
             default: true
+          - name: detailEnabled
+            label: Pokaż szczegóły po kliknięciu
+            type: boolean
+            default: false
+            description: Po włączeniu karta będzie klikalna i otworzy dodatkowe informacje w oknie na tej samej stronie.
+          - name: detailBody
+            label: Treść szczegółowa
+            type: rich-text
+            required: false
+            description: Dłuższy opis wyświetlany po kliknięciu karty. Pole jest używane tylko, gdy włączono „Pokaż szczegóły po kliknięciu”.
+            options:
+              format: html
+              switcher: false
+              media: false
 
       - name: items
         label: Wydarzenia
