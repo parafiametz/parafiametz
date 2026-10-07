@@ -277,6 +277,104 @@
   .icon-item .icon svg{ stroke:var(--burgundy); }
   .icon-item strong{ display:block; margin-bottom:3px; color:var(--burgundy-deep); font-size:1rem; }
   .icon-item p{ margin:0; font-size:0.92rem; color:var(--ink-soft); line-height:1.55; }
+  .icon-item.community-clickable{
+    cursor:pointer;
+    position:relative;
+  }
+  .icon-item.community-clickable:focus-visible{
+    outline:3px solid rgba(169,130,44,0.45);
+    outline-offset:3px;
+  }
+  .community-more{
+    display:inline-flex;
+    align-items:center;
+    gap:5px;
+    margin-top:9px;
+    color:var(--burgundy);
+    font-size:0.78rem;
+    font-weight:600;
+  }
+  .community-more svg{
+    width:14px;
+    height:14px;
+    stroke:currentColor;
+  }
+
+  .community-modal{
+    position:fixed;
+    inset:0;
+    z-index:1200;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:28px;
+    background:rgba(20,27,36,0.68);
+    backdrop-filter:blur(2px);
+  }
+  .community-modal.open{ display:flex; }
+  .community-modal-dialog{
+    position:relative;
+    width:min(760px, 100%);
+    max-height:min(82vh, 780px);
+    overflow:auto;
+    background:var(--paper);
+    border:1px solid rgba(169,130,44,0.45);
+    border-radius:16px;
+    box-shadow:0 24px 70px rgba(20,27,36,0.28);
+    padding:34px 38px 36px;
+  }
+  .community-modal-dialog h3{
+    margin:0 46px 18px 0;
+    font-size:1.75rem;
+    line-height:1.2;
+  }
+  .community-modal-close{
+    position:absolute;
+    top:14px;
+    right:16px;
+    width:38px;
+    height:38px;
+    border:0;
+    border-radius:50%;
+    background:rgba(122,22,38,0.08);
+    color:var(--burgundy-deep);
+    font-size:1.65rem;
+    line-height:1;
+    cursor:pointer;
+  }
+  .community-modal-close:hover{ background:rgba(122,22,38,0.14); }
+  .community-modal-body{
+    line-height:1.75;
+    overflow-wrap:anywhere;
+  }
+  .community-modal-body > :first-child{ margin-top:0; }
+  .community-modal-body > :last-child{ margin-bottom:0; }
+  .community-modal-body ul,
+  .community-modal-body ol{ margin:0.8em 0; padding-left:1.6em; }
+  .community-modal-body ul li{ list-style:disc; }
+  .community-modal-body ol li{ list-style:decimal; }
+  .community-modal-body blockquote{
+    margin:1em 0;
+    padding:12px 18px;
+    border-left:3px solid var(--gold);
+    background:rgba(169,130,44,0.07);
+    color:var(--ink-soft);
+  }
+  .community-modal-body a{
+    color:var(--burgundy);
+    text-decoration:underline;
+    text-underline-offset:2px;
+  }
+  @media (max-width:600px){
+    .community-modal{ padding:14px; }
+    .community-modal-dialog{
+      width:100%;
+      max-height:88vh;
+      padding:28px 22px 26px;
+      border-radius:14px;
+    }
+    .community-modal-dialog h3{ font-size:1.5rem; }
+  }
 
   .placeholder-card{
     border:1px dashed var(--gold);
@@ -1261,6 +1359,14 @@ function renderSafeRichText(container, value) {
 })();
 </script>
 
+  <div id="community-modal" class="community-modal" role="dialog" aria-modal="true" aria-labelledby="community-modal-title" aria-hidden="true">
+    <div class="community-modal-dialog" role="document">
+      <button type="button" class="community-modal-close" aria-label="Zamknij">×</button>
+      <h3 id="community-modal-title"></h3>
+      <div id="community-modal-body" class="community-modal-body"></div>
+    </div>
+  </div>
+
   <div id="image-lightbox" class="image-lightbox" role="dialog" aria-modal="true" aria-label="Podgląd zdjęcia">
     <button type="button" class="image-lightbox-close" aria-label="Zamknij">×</button>
     <img id="image-lightbox-img" alt="">
@@ -1328,6 +1434,45 @@ document.addEventListener('keydown', (event) => {
       church: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M12 2v5M9.5 4.5h5"/><path d="M5 22V10l7-4 7 4v12"/><path d="M9 22v-6h6v6"/></svg>'
     };
 
+    const communityModal = document.getElementById('community-modal');
+    const communityModalTitle = document.getElementById('community-modal-title');
+    const communityModalBody = document.getElementById('community-modal-body');
+    const communityModalClose = communityModal ? communityModal.querySelector('.community-modal-close') : null;
+    let communityModalReturnFocus = null;
+
+    function closeCommunityModal() {
+      if (!communityModal || !communityModal.classList.contains('open')) return;
+      communityModal.classList.remove('open');
+      communityModal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      if (communityModalBody) communityModalBody.replaceChildren();
+      if (communityModalReturnFocus) communityModalReturnFocus.focus();
+      communityModalReturnFocus = null;
+    }
+
+    function openCommunityModal(item, trigger) {
+      if (!communityModal || !communityModalTitle || !communityModalBody) return;
+      communityModalTitle.textContent = typeof item.title === 'string' ? item.title : '';
+      communityModalBody.replaceChildren();
+      renderSafeRichText(communityModalBody, typeof item.detailBody === 'string' ? item.detailBody : '');
+      communityModalReturnFocus = trigger || null;
+      communityModal.classList.add('open');
+      communityModal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      if (communityModalClose) communityModalClose.focus();
+    }
+
+    if (communityModal && communityModalClose && !communityModal.dataset.bound) {
+      communityModal.dataset.bound = 'true';
+      communityModalClose.addEventListener('click', closeCommunityModal);
+      communityModal.addEventListener('click', (event) => {
+        if (event.target === communityModal) closeCommunityModal();
+      });
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && communityModal.classList.contains('open')) closeCommunityModal();
+      });
+    }
+
     if (communityContainer) {
       const communityFragment = document.createDocumentFragment();
       for (const item of communityItems.filter(item => item && item.visible !== false)) {
@@ -1344,6 +1489,28 @@ document.addEventListener('keydown', (event) => {
         const body = document.createElement('p');
         body.textContent = typeof item.body === 'string' ? item.body : '';
         content.append(title, body);
+
+        const hasDetails = item.detailEnabled === true && typeof item.detailBody === 'string' && item.detailBody.trim();
+        if (hasDetails) {
+          card.classList.add('community-clickable');
+          card.tabIndex = 0;
+          card.setAttribute('role', 'button');
+          card.setAttribute('aria-haspopup', 'dialog');
+          card.setAttribute('aria-label', 'Więcej informacji: ' + (typeof item.title === 'string' ? item.title : ''));
+
+          const more = document.createElement('span');
+          more.className = 'community-more';
+          more.innerHTML = 'Więcej informacji <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+          content.append(more);
+
+          card.addEventListener('click', () => openCommunityModal(item, card));
+          card.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter' || event.key === ' ') {
+              event.preventDefault();
+              openCommunityModal(item, card);
+            }
+          });
+        }
 
         card.append(icon, content);
         communityFragment.append(card);
