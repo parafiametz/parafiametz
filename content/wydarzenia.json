@@ -4,19 +4,33 @@
       "title": "Katecheza dla dzieci",
       "body": "W soboty w roku szkolnym, godz. 10:00–12:00, w Salce Parafialnej na Plebanii",
       "icon": "book",
-      "visible": true
+      "visible": true,
+      "detailEnabled": false,
+      "detailBody": "<p></p>"
     },
     {
       "title": "Spotkanie przy kawie",
       "body": "Po niedzielnej Mszy świętej, w Domu Polskim — okazja do rozmowy i integracji wspólnoty.",
       "icon": "coffee",
-      "visible": true
+      "visible": true,
+      "detailEnabled": false,
+      "detailBody": "<p></p>"
     },
     {
       "title": "Uroczystości liturgiczne",
       "body": "Boże Narodzenie, Wielkanoc i inne święta obchodzone są wspólnie, często z dodatkowymi nabożeństwami.",
       "icon": "star",
-      "visible": true
+      "visible": true,
+      "detailEnabled": false,
+      "detailBody": "<p></p>"
+    },
+    {
+      "title": "Małe kroki – wielka wiara",
+      "body": "Rozpoczynamy w naszej parafii nową inicjatywę duszpasterską. \nJej celem jest bardzo prosta rzecz: pomóc nam trochę inaczej przeżywać naszą wiarę i bardziej świadomie dostrzegać Boga, drugiego człowieka oraz to, co dzieje się wokół nas. ",
+      "icon": "people",
+      "visible": true,
+      "detailEnabled": true,
+      "detailBody": "<p>Przez najbliższe miesiące, w każdą niedzielę, będziemy proponować Wam różne małe zadania, gesty i inicjatywy. Każdy miesiąc będzie miał swój własny temat i będzie skierowany czasami do wszystkich, a czasami do konkretnych grup naszej parafii. </p><p>We wrześniu rozpoczynamy hasłem: <strong>„Jest Ktoś, kto mnie szuka”.</strong> </p><p>Przez każdą niedzielę tego miesiąca przy wyjściu z kościoła będzie można znaleźć przygotowane karteczki. Na każdej z nich będzie znajdował się krótki fragment Pisma Świętego. Po Mszy Świętej każdy będzie mógł podejść, wylosować jedną karteczkę i zabrać ją ze sobą. </p><p>I właśnie tutaj zaczyna się nasze zadanie. Nie będzie to przypadkowy cytat, ale słowo, które chcemy potraktować bardzo osobiście. Można je przeczytać jeszcze tego samego dnia, wrócić do niego w ciągu tygodnia, zastanowić się, dlaczego właśnie ten fragment znalazł się w moich rękach i czy Pan Bóg nie chce mi przez niego czegoś powiedzieć. </p><p>Być może będzie to zdanie, które pocieszy. Być może coś, co zmusi do zastanowienia. Być może słowo, którego akurat potrzebujemy. Dlatego zachęcam: nie przechodźmy obok tych karteczek obojętnie. Podejdźmy, wylosujmy i zobaczmy, co Pan Bóg chce nam w tym tygodniu powiedzieć.</p>"
     }
   ],
   "items": [
