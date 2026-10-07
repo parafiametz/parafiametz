@@ -6,7 +6,6 @@
       "icon": "clock",
       "rows": [
         {
-          "label": "Godzina",
           "text": "Msza święta o 9:30"
         },
         {
