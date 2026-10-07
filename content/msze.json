@@ -55,6 +55,16 @@
         }
       ],
       "visible": true
+    },
+    {
+      "title": "Msze Święte w Guénange",
+      "icon": "clock",
+      "rows": [
+        {
+          "text": "Msze Święte w Guénange.\nCelebrujemy je w każdą niedzielę o godz. 11:15.\nMsze Święte są sprawowane w kościele przy 11 Saint-Benoît, 57310 Guénange."
+        }
+      ],
+      "visible": true
     }
   ],
   "note": "Szczegółowy, cotygodniowy harmonogram (miejsce i godziny) może ulec zmianie — prosimy o potwierdzenie w bieżących ogłoszeniach parafialnych lub telefonicznie."
