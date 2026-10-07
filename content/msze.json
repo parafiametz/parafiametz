@@ -41,6 +41,16 @@
       "visible": true
     },
     {
+      "title": "Różaniec",
+      "icon": "sun",
+      "rows": [
+        {
+          "text": "Różaniec odbywa sie w  każdy wtorek o 17:30 w Kaplicy Sainte-Croix"
+        }
+      ],
+      "visible": true
+    },
+    {
       "title": "Spowiedź",
       "icon": "heart",
       "rows": [
