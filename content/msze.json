@@ -31,6 +31,16 @@
       "visible": true
     },
     {
+      "title": "Pierwsza sobota miesiąca",
+      "icon": "sun",
+      "rows": [
+        {
+          "text": "Msza święta po polsku o 09:30"
+        }
+      ],
+      "visible": true
+    },
+    {
       "title": "Spowiedź",
       "icon": "heart",
       "rows": [
@@ -42,17 +52,6 @@
         },
         {
           "text": "W każdą niedzielę przed Mszą św."
-        }
-      ],
-      "visible": true
-    },
-    {
-      "title": "Pierwsza sobota miesiąca",
-      "icon": "sun",
-      "rows": [
-        {
-          "label": "Pierwsza sobota miesiąca",
-          "text": "Msza święta po polsku o 09:30"
         }
       ],
       "visible": true
