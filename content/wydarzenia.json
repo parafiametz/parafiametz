@@ -4,49 +4,37 @@
       "title": "Katecheza dla dzieci",
       "body": "W soboty w roku szkolnym, godz. 10:00–12:00, w Salce Parafialnej na Plebanii",
       "icon": "book",
-      "visible": true,
-      "detailEnabled": false,
-      "detailBody": "<p></p>"
+      "visible": true
     },
     {
       "title": "Spotkanie przy kawie",
       "body": "Po niedzielnej Mszy świętej, w Domu Polskim — okazja do rozmowy i integracji wspólnoty.",
       "icon": "coffee",
-      "visible": true,
-      "detailEnabled": false,
-      "detailBody": "<p></p>"
+      "visible": true
     },
     {
       "title": "Uroczystości liturgiczne",
       "body": "Boże Narodzenie, Wielkanoc i inne święta obchodzone są wspólnie, często z dodatkowymi nabożeństwami.",
       "icon": "star",
-      "visible": true,
-      "detailEnabled": false,
-      "detailBody": "<p></p>"
+      "visible": true
     },
     {
       "title": "Małe kroki – wielka wiara",
       "body": "Stała inicjatywa duszpasterska, która poprzez proste zadania i gesty pomaga nam świadomie przeżywać wiarę każdego dnia.",
       "icon": "people",
-      "visible": true,
-      "detailEnabled": true,
-      "detailBody": "<p><strong>„Małe kroki – wielka wiara”</strong> to stała inicjatywa duszpasterska naszej parafii, której celem jest wspólne i bardziej świadome przeżywanie wiary w codziennym życiu.</p><p>W ramach tej inicjatywy regularnie proponujemy <strong>małe zadania, gesty i działania</strong>, które mają pomagać nam dostrzegać obecność Boga i drugiego człowieka, pogłębiać naszą relację z Panem Bogiem oraz odważnie wychodzić poza to, co znamy i robimy na co dzień.</p><p>Nie chodzi o wielkie przedsięwzięcia. Czasem będzie to fragment Pisma Świętego, do którego warto wrócić w ciągu tygodnia, innym razem konkretny gest wobec drugiego człowieka, chwila modlitwy, refleksji lub niewielkie wyzwanie. <strong>Małe kroki podejmowane regularnie mogą z czasem prowadzić do wielkiej i dojrzałej wiary.</strong></p><p>Każda kolejna odsłona inicjatywy będzie miała swoje hasło oraz związane z nim zadanie. Zachęcamy, aby nie traktować tych propozycji jako jednorazowych akcji, lecz wracać do nich również w kolejnych dniach i zastanawiać się, do czego poprzez nie zaprasza nas Pan Bóg.</p><p><strong>Pamiętajmy o naszych „małych krokach” także poza murami kościoła.</strong> Wiara nie kończy się wraz z niedzielną Mszą Świętą – możemy przeżywać ją każdego dnia poprzez proste decyzje, słowa i gesty wobec Boga i drugiego człowieka.</p><p>Niech każdy mały krok pomaga nam coraz pełniej odkrywać Boga i budować <strong>wielką wiarę</strong> w naszym życiu i w całej naszej wspólnocie.</p>"
+      "visible": true
     },
     {
       "title": "Krąg biblijny",
       "body": "Wspólne czytanie i rozważanie Ewangelii z najbliższej niedzieli oraz poznawanie sposobów, które pomagają lepiej rozumieć i przeżywać Słowo Boże.",
       "icon": "book",
-      "visible": true,
-      "detailEnabled": true,
-      "detailBody": "<p>Krąg Biblijny to czas wspólnego spotkania ze Słowem Bożym. Czytamy i rozważamy Ewangelię z najbliższej niedzieli, zatrzymując się nad jej przesłaniem i odkrywając, co Bóg chce powiedzieć do każdego z nas.</p><p>Spotkania odbywają się standardowo <strong>w każdy pierwszy wtorek miesiąca</strong> <strong>o godz. 19:00 w salce parafialnej</strong>.</p><p>Podczas spotkań poznajemy również różne sposoby i metody czytania Pisma Świętego, które pomagają lepiej je rozumieć, odnosić do codziennego życia i pogłębiać osobistą relację z Bogiem.</p><p>To dobra okazja, aby na chwilę zatrzymać się w codziennym zabieganiu, wsłuchać się w Ewangelię i wspólnie dzielić się refleksją nad Słowem, które żyje i przemienia nasze życie.</p><p>Zapraszamy wszystkich – zarówno osoby, które już uczestniczą w Kręgu Biblijnym, jak i tych, którzy chcieliby dołączyć po raz pierwszy. Nie jest wymagane wcześniejsze przygotowanie ani szczególna znajomość Pisma Świętego.</p>"
+      "visible": true
     },
     {
       "title": "Spotkanie tematyczne",
       "body": "Comiesięczne spotkania poświęcone ważnym i często trudnym pytaniom dotyczącym wiary, Kościoła i naszego życia. Wspólnie szukamy odpowiedzi, rozmawiamy i pogłębiamy rozumienie naszej wiary.",
       "icon": "book",
-      "visible": true,
-      "detailEnabled": true,
-      "detailBody": "<p>Zapraszamy na comiesięczne <strong>spotkania tematyczne</strong>, które odbywają się w <strong>każdy trzeci wtorek miesiąca o godz. 19:00 w salce parafialnej</strong>.</p><p>Celem spotkań jest wspólne podejmowanie ważnych, ciekawych, a czasem także trudnych pytań dotyczących <strong>wiary, Kościoła i naszego życia</strong>. Chcemy razem szukać odpowiedzi, lepiej rozumieć swoją wiarę oraz tworzyć przestrzeń do swobodnej rozmowy i zadawania pytań, na które nie zawsze łatwo znaleźć jednoznaczną odpowiedź.</p><p>Spotkania są otwarte dla wszystkich, którzy chcieliby pogłębić swoją wiedzę, podzielić się własnymi przemyśleniami lub po prostu wysłuchać rozmowy na dany temat.</p><h3>Harmonogram spotkań 2026/2027</h3><p><strong>15 września 2026</strong><br><em>„Okrucieństwo Boga w Starym Testamencie – jak je zrozumieć?”</em></p><p><strong>20 października 2026</strong></p><p><em>„Jak żyć wśród niewierzących i zachować swoją wiarę?”</em></p><p><strong>17 listopada 2026</strong></p><p><em>„Czy można być wierzącym niepraktykującym? Czy można zostać zbawionym?”</em></p><p><strong>22 grudnia 2026</strong></p><p><em>„Po co nam modlitwa? Co nam daje i jak się modlić?”</em></p><p><strong>19 stycznia 2027</strong></p><p><em>„Jak rozwijać duchowość w małżeństwie? Czy można razem wzrastać w wierze?”</em></p><p><strong>16 lutego 2027</strong></p><p><em>„Jak rozwijać swoją duchowość i odkrywać Boga w codziennym życiu?”</em></p><p><strong>23 marca 2027</strong></p><p><em>„Pismo Święte a historia i nauka — czy odkrycia naukowe pomagają zrozumieć i obronić wiarę?”</em></p><p></p><p><strong>Lista oczywiście nie jest zamknięta. </strong>Jeśli są pytania, które od dawna Was nurtują, tematy, których nie rozumiecie, albo kwestie, o których chcielibyście po prostu spokojnie porozmawiać — <strong>zachęcam do ich zgłaszania</strong>.</p><p><strong>20 kwietnia 2027</strong></p><p><strong>18 maja 2027</strong></p><p><strong>22 czerwca 2027</strong></p><p></p><p><strong>Zapraszamy wszystkich, którzy chcą wspólnie pytać, rozmawiać i coraz lepiej poznawać swoją wiarę.</strong></p>"
+      "visible": true
     }
   ],
   "items": [
@@ -65,6 +53,15 @@
       "body": "<p><strong>W niedzielę 11 października 2026 roku</strong> w naszej parafii będziemy obchodzić XXVI Dzień Papieski, którego tegorocznym hasłem jest <strong>„Uczeń-Misjonarz”</strong>.</p><p>Dzień Papieski to szczególny czas modlitwy, wdzięczności i refleksji nad życiem oraz nauczaniem św. Jana Pawła II. Jest to okazja, aby przypomnieć sobie nie tylko niezwykłą postać Papieża Polaka, ale przede wszystkim wartości, które głosił przez cały swój pontyfikat: wiarę, miłość, solidarność, szacunek dla drugiego człowieka oraz odwagę w dawaniu świadectwa o Chrystusie.</p><p>Tegoroczne hasło <strong>„Uczeń-Misjonarz”</strong> przypomina nam, że każdy chrześcijanin jest powołany nie tylko do poznawania i pogłębiania swojej wiary, ale również do dzielenia się nią z innymi. Być uczniem Chrystusa oznacza słuchać Jego słowa, naśladować Go w codziennym życiu i nieść Ewangelię tam, gdzie jesteśmy – w rodzinie, pracy, szkole i naszej wspólnocie.</p><p>Dla nas, Polaków mieszkających we Francji, Dzień Papieski ma szczególne znaczenie. Jest okazją do pielęgnowania duchowego dziedzictwa naszego Wielkiego Rodaka, który swoim życiem i nauczaniem łączył ludzi ponad granicami, kulturami i pokoleniami. Jego przesłanie pozostaje aktualne także dzisiaj, zachęcając nas do budowania wspólnoty opartej na wierze, wzajemnej życzliwości i odpowiedzialności za drugiego człowieka.</p><p><strong>Niech tegoroczny Dzień Papieski będzie dla każdego z nas zachętą do ponownego odkrywania nauczania św. Jana Pawła II oraz do odważnego i radosnego dawania świadectwa naszej wiary w codziennym życiu.</strong></p>",
       "alignment": "justify",
       "image": "/media/images/urll718-1.jpeg",
+      "published": true
+    },
+    {
+      "title": "Carlsberskie Spotkanie dla Małżeństw – „Bo do tanga trzeba dwojga”",
+      "date": "27/11/2026",
+      "place": "Carlsberg, Niemcy",
+      "body": "<p>Małżeństwo to wspólna droga, na której nieustannie uczymy się miłości, wzajemnego zrozumienia i bliskości. W codziennym zabieganiu warto znaleźć chwilę, aby zatrzymać się, spojrzeć na siebie na nowo i przypomnieć sobie, dlaczego przed laty powiedzieliśmy sobie „tak”.</p><p>Serdecznie zapraszamy wszystkie małżeństwa do udziału w <strong>Carlsberskim Spotkaniu dla Małżeństw</strong>, które odbędzie się w dniach <strong>27–29 listopada 2026 roku</strong> w Marianum w Carlsbergu.</p><p>Tegoroczne spotkanie, odbywające się pod hasłem <strong>„Laboratorium relacji: Bo do tanga trzeba dwojga – Boskie i ludzkie sekrety naszego małżeństwa”</strong>, będzie okazją do pogłębienia więzi małżeńskiej, wspólnej refleksji oraz odkrywania na nowo piękna sakramentalnej miłości.</p><h3>W programie spotkania</h3><p><strong>Sesja I – „Wszystko mi mówi, że mnie ktoś pokochał”</strong></p><p><em>Gdyby nie Ty, to by nie Ja – sakramentalność naszego małżeństwa.</em></p><p>Refleksja nad wyjątkowością małżeńskiego powołania, obecnością Boga w codziennym życiu małżonków oraz miłością, która staje się fundamentem wspólnej drogi.</p><p><strong>Sesja II – „Odkryjemy miłość nieznaną”</strong></p><p><em>Sekrety małżeńskiej intymności.</em></p><p>Spotkanie poświęcone budowaniu bliskości, wzajemnemu poznawaniu się oraz pielęgnowaniu więzi, która umacnia małżeństwo na kolejnych etapach wspólnego życia.</p><p><strong>Sesja III – „Cudownych rodziców mam”</strong></p><p><em>Nasza miłość jako bezpieczna baza dla dzieci.</em></p><p>Rozważania o tym, jak relacja między małżonkami wpływa na życie rodzinne oraz w jaki sposób miłość rodziców tworzy przestrzeń bezpieczeństwa i rozwoju dla dzieci.</p><h3>Wieczór tańca i bliskości</h3><p><strong>„Przetańczyć z Tobą chcę całą noc – Zaręczyny po latach”</strong></p><p>Wyjątkowy wieczór, który pozwoli małżonkom powrócić wspomnieniami do początków wspólnej drogi, odnaleźć radość bycia razem i na nowo celebrować swoją miłość.</p><h3>Prowadzący</h3><ul><li><p><strong>Wiesław Gajewski</strong> – pedagog małżeństwa i rodziny.</p></li><li><p><strong>Maciej Różycki</strong> – kompozytor, muzyk i aranżer.</p></li></ul><h3>Informacje organizacyjne</h3><p><strong>Termin:</strong> 27–29 listopada 2026 r.</p><p><strong>Miejsce:</strong> Marianum, Kreuzweg 28, 67316 Carlsberg, Niemcy.</p><p><strong>Koszt udziału (od osoby):</strong></p><ul><li><p>Stary dom – 120 €</p></li><li><p>Dom Jana Pawła II – 150 €</p></li></ul><p><strong>Organizatorzy zapewniają opiekę dla dzieci.</strong></p><p><strong>Zgłoszenia:</strong> <a href=\"mailto:bmazur@oaza.de\">bmazur@oaza.de</a></p><h3>Zadbajmy o nasze małżeństwa!</h3><p>Miłość małżeńska jest darem, ale również zadaniem, które wymaga czasu, troski i zaangażowania. Warto w nią inwestować, pielęgnować wzajemną bliskość i nieustannie odkrywać siebie na nowo.</p><p>Niech ten listopadowy weekend stanie się okazją do umocnienia małżeńskiej więzi, wspólnego odpoczynku i odnowienia radości płynącej z bycia razem.</p><p><strong>Serdecznie zachęcamy wszystkie małżeństwa do udziału w tym wyjątkowym spotkaniu!</strong></p>",
+      "alignment": "justify",
+      "image": "/media/images/whatsapp-image-2026-10-08-at-124841.jpeg",
       "published": true
     }
   ]
