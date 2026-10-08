@@ -22,19 +22,25 @@
       "title": "Małe kroki – wielka wiara",
       "body": "Stała inicjatywa duszpasterska, która poprzez proste zadania i gesty pomaga nam świadomie przeżywać wiarę każdego dnia.",
       "icon": "people",
-      "visible": true
+      "visible": true,
+      "expandable": true,
+      "details": "<p><strong>„Małe kroki – wielka wiara”</strong> to stała inicjatywa duszpasterska naszej wspólnoty, która zachęca do odkrywania obecności Boga w codziennym życiu.</p><p>Jej ideą jest podejmowanie małych, konkretnych kroków: znalezienie chwili na modlitwę, uważne przeczytanie fragmentu Pisma Świętego, okazanie życzliwości drugiemu człowiekowi czy świadome przeżywanie zwyczajnych obowiązków w duchu wiary.</p><p>Nie chodzi o wielkie postanowienia, ale o wytrwałość i otwartość serca. Nawet niewielkie gesty podejmowane regularnie mogą pomagać nam pogłębiać relację z Bogiem i bliźnimi.</p>"
     },
     {
       "title": "Krąg biblijny",
       "body": "Wspólne czytanie i rozważanie Ewangelii z najbliższej niedzieli oraz poznawanie sposobów, które pomagają lepiej rozumieć i przeżywać Słowo Boże.",
       "icon": "book",
-      "visible": true
+      "visible": true,
+      "expandable": true,
+      "details": "<p>Zapraszamy do udziału w <strong>Kręgu biblijnym</strong> – spotkaniach poświęconych wspólnemu czytaniu i rozważaniu Słowa Bożego.</p><p>Podczas spotkań wsłuchujemy się w Ewangelię z najbliższej niedzieli, dzielimy się refleksjami i poznajemy różne sposoby oraz metody, które pomagają lepiej czytać, rozumieć i przeżywać Pismo Święte. To okazja, aby zatrzymać się na chwilę i odkryć, co Bóg mówi do każdego z nas.</p><p><strong>Krąg biblijny odbywa się standardowo w pierwszy piątek miesiąca na plebanii.</strong> Dokładną godzinę i ewentualne zmiany terminu podajemy w bieżących ogłoszeniach parafialnych.</p><p>Zapraszamy zarówno osoby uczestniczące regularnie, jak i tych, którzy chcieliby przyjść po raz pierwszy.</p>"
     },
     {
       "title": "Spotkanie tematyczne",
       "body": "Comiesięczne spotkania poświęcone ważnym i często trudnym pytaniom dotyczącym wiary, Kościoła i naszego życia. Wspólnie szukamy odpowiedzi, rozmawiamy i pogłębiamy rozumienie naszej wiary.",
       "icon": "book",
-      "visible": true
+      "visible": true,
+      "expandable": true,
+      "details": "<p><strong>Spotkania tematyczne</strong> są przestrzenią wspólnej rozmowy o ważnych, niekiedy trudnych pytaniach dotyczących wiary, Kościoła i naszego codziennego życia.</p><p>Chcemy razem szukać odpowiedzi, pogłębiać wiedzę religijną i spojrzeć na różne zagadnienia w świetle Pisma Świętego oraz nauczania Kościoła. Nie trzeba mieć specjalnego przygotowania – wystarczy ciekawość i gotowość do rozmowy.</p><p><strong>Termin:</strong> każdy trzeci wtorek miesiąca, godz. 19:00.<br><strong>Miejsce:</strong> salka parafialna.</p><p>Tematy kolejnych spotkań będą ogłaszane na bieżąco w ogłoszeniach parafialnych. Serdecznie zapraszamy do wspólnej refleksji i dyskusji.</p>"
     }
   ],
   "items": [
