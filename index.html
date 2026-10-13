@@ -682,6 +682,8 @@
   @media(max-width:540px){.community-dialog-header{padding:20px 18px 16px}.community-dialog-body{padding:0 18px 22px}}
   .events-static-title{ margin-top:28px; }
   .events-upcoming-title{ margin-top:36px; }
+  .events-upcoming-title, .events-past-title{ font-size:1.65rem; font-weight:700; letter-spacing:.01em; }
+  .events-past-title{ max-width:900px; margin:44px auto 20px; padding-top:28px; border-top:1px solid var(--line); text-align:center; }
   #sec-wydarzenia .icon-grid{
     grid-template-columns:repeat(3, minmax(0, 1fr));
     width:100%;
@@ -1003,7 +1005,7 @@
           </div>
           <div id="community-dialog-body" class="event-body community-dialog-body"></div>
         </dialog>
-        <h3 class="events-upcoming-title">Nadchodzące i ostatnie wydarzenia</h3>
+        <h3 class="events-upcoming-title">Nadchodzące wydarzenia</h3>
         <div id="events" class="events-list" aria-live="polite"><p class="note">Wczytywanie wydarzeń…</p></div>
       </section>
 
@@ -1554,7 +1556,7 @@ document.addEventListener('keydown', (event) => {
     }
 
     const items = Array.isArray(data.items) ? data.items : [];
-    const todayKey = new Date().toISOString().slice(0, 10);
+    const todayKey = new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/Paris', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date());
     const published = items
       .map((item, index) => ({ item, index }))
       .filter(({ item }) =>
@@ -1672,7 +1674,16 @@ document.addEventListener('keydown', (event) => {
       empty.textContent = 'Obecnie brak opublikowanych wydarzeń.';
       fragment.append(empty);
     } else if (pastCount) {
-      fragment.append(pastFragment);
+      if (!fragment.childNodes.length) {
+        const emptyUpcoming = document.createElement('p');
+        emptyUpcoming.className = 'note';
+        emptyUpcoming.textContent = 'Obecnie brak nadchodzących wydarzeń.';
+        fragment.append(emptyUpcoming);
+      }
+      const pastTitle = document.createElement('h3');
+      pastTitle.className = 'events-past-title';
+      pastTitle.textContent = 'Minione wydarzenia';
+      fragment.append(pastTitle, pastFragment);
     }
 
     container.replaceChildren(fragment);
