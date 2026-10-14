@@ -1,0 +1,52 @@
+{
+  "communityItems": [
+    {
+      "title": "Catéchèse pour les enfants",
+      "body": "Les samedis pendant l’année scolaire, de 10 h à 12 h, dans la salle paroissiale au presbytère.",
+      "expandable": false,
+      "details": "<p></p>",
+      "icon": "book",
+      "visible": true
+    },
+    {
+      "title": "Rencontre autour d’un café",
+      "body": "Après la messe du dimanche, à la Maison polonaise : un moment convivial pour discuter et renforcer les liens de notre communauté.",
+      "expandable": false,
+      "details": "<p></p>",
+      "icon": "coffee",
+      "visible": true
+    },
+    {
+      "title": "Célébrations liturgiques",
+      "body": "Noël, Pâques et les autres fêtes sont célébrés ensemble, souvent avec des offices supplémentaires.",
+      "expandable": false,
+      "details": "<p></p>",
+      "icon": "star",
+      "visible": true
+    },
+    {
+      "title": "Petits pas – grande foi",
+      "body": "Une initiative pastorale permanente : de petites actions et de simples gestes pour vivre la foi plus consciemment, jour après jour.",
+      "expandable": true,
+      "details": "<p><strong>« Petits pas – grande foi »</strong> est une initiative pastorale permanente de notre paroisse, destinée à nous aider à vivre notre foi plus consciemment au quotidien.</p><p>Nous proposons régulièrement <strong>des gestes simples, des actions et de petits défis</strong> qui invitent à reconnaître la présence de Dieu et des autres, à approfondir notre relation avec le Seigneur et à sortir de nos habitudes.</p><p>Il peut s’agir de relire un passage de la Bible au cours de la semaine, d’accomplir un geste pour quelqu’un, de prendre un moment pour prier ou réfléchir. <strong>Des petits pas réguliers peuvent conduire à une foi profonde et mûre.</strong></p><p>Chaque étape propose un thème et une démarche concrète. Nous vous invitons à y revenir au fil des jours, plutôt qu’à y voir une action ponctuelle.</p><p><strong>N’oublions pas ces petits pas en dehors de l’église.</strong> La foi ne s’arrête pas à la messe du dimanche : elle se vit dans nos décisions, nos paroles et nos relations.</p><p>Que chaque petit pas nous aide à découvrir davantage Dieu et à faire grandir <strong>une grande foi</strong> dans nos vies et dans notre communauté.</p>",
+      "icon": "people",
+      "visible": true
+    },
+    {
+      "title": "Groupe biblique",
+      "body": "Lecture et méditation en commun de l’Évangile du dimanche suivant, avec des méthodes pour mieux comprendre et vivre la Parole de Dieu.",
+      "expandable": true,
+      "details": "<p>Le groupe biblique est un moment de rencontre autour de la Parole de Dieu. Nous lisons et méditons l’Évangile du dimanche suivant pour découvrir ensemble son message.</p><p>Les rencontres ont normalement lieu <strong>le premier mardi de chaque mois à 19 h, dans la salle paroissiale</strong>.</p><p>Nous découvrons différentes méthodes de lecture de l’Écriture, pour mieux la comprendre, l’appliquer à la vie quotidienne et approfondir notre relation personnelle avec Dieu.</p><p>C’est une occasion de prendre du recul, d’écouter l’Évangile et de partager nos réflexions dans un climat de confiance.</p><p>Tout le monde est bienvenu, y compris les personnes qui souhaitent venir pour la première fois. Aucune préparation ou connaissance particulière de la Bible n’est nécessaire.</p>",
+      "icon": "book",
+      "visible": true
+    },
+    {
+      "title": "Rencontre thématique",
+      "body": "Des rencontres mensuelles pour aborder ensemble les questions importantes et parfois difficiles sur la foi, l’Église et notre vie quotidienne.",
+      "expandable": true,
+      "details": "<p>Nous vous invitons à nos <strong>rencontres thématiques mensuelles</strong>, qui ont lieu <strong>le troisième mardi de chaque mois à 19 h, dans la salle paroissiale</strong>.</p><p>Ensemble, nous abordons des questions importantes et parfois difficiles sur <strong>la foi, l’Église et la vie quotidienne</strong>. Nous cherchons des réponses et échangeons librement, dans un esprit d’écoute.</p><p>Ces rencontres sont ouvertes à toutes les personnes qui souhaitent approfondir leurs connaissances, partager leurs réflexions ou simplement écouter.</p><h3>Programme 2026–2027</h3><p><strong>15 septembre 2026</strong><br><em>« Comment comprendre la cruauté apparente de Dieu dans l’Ancien Testament ? »</em></p><p><strong>20 octobre 2026</strong><br><em>« Comment vivre parmi les non-croyants tout en gardant sa foi ? »</em></p><p><strong>17 novembre 2026</strong><br><em>« Peut-on être croyant sans pratiquer ? Peut-on être sauvé ? »</em></p><p><strong>19 janvier 2027</strong><br><em>« Pourquoi prier ? Qu’apporte la prière et comment prier ? »</em></p><p><strong>16 février 2027</strong><br><em>« Comment approfondir la spiritualité dans le mariage et grandir ensemble dans la foi ? »</em></p><p><strong>23 mars 2027</strong><br><em>« Comment développer sa vie spirituelle et découvrir Dieu au quotidien ? »</em></p><p><strong>20 avril 2027</strong><br><em>« Bible, histoire et science : les découvertes scientifiques peuvent-elles aider à comprendre et à défendre la foi ? »</em></p><p><strong>18 mai 2027</strong> — thème à préciser</p><p><strong>22 juin 2027</strong> — thème à préciser</p><p>Cette liste est ouverte : si vous avez des questions ou des sujets que vous aimeriez aborder, <strong>n’hésitez pas à nous les proposer</strong>.</p><p><strong>Bienvenue à toutes celles et ceux qui souhaitent poser des questions, échanger et mieux connaître leur foi.</strong></p>",
+      "icon": "book",
+      "visible": true
+    }
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "lede": "Le lieu de la messe dominicale en polonais varie selon la saison. Pensez à vérifier l’adresse avant de vous déplacer.",
+  "items": [
+    {
+      "title": "Dimanches et fêtes",
+      "icon": "clock",
+      "rows": [
+        {
+          "text": "Messe en polonais à 9 h 30"
+        },
+        {
+          "label": "Printemps / été / automne",
+          "text": "Église Sainte-Ségolène, 14 place Jeanne d’Arc, Metz"
+        },
+        {
+          "label": "Hiver (fin novembre – Pâques)",
+          "text": "Chapelle Sainte-Croix, 3 rue du Haut-de-Sainte-Croix, Metz (entrée par le portail 3A/B)"
+        }
+      ],
+      "visible": true
+    },
+    {
+      "title": "Premier vendredi du mois",
+      "icon": "sun",
+      "rows": [
+        {
+          "text": "Messe en polonais à 19 h 30, suivie de l’adoration du Saint-Sacrement"
+        }
+      ],
+      "visible": true
+    },
+    {
+      "title": "Premier samedi du mois",
+      "icon": "sun",
+      "rows": [
+        {
+          "text": "Messe en polonais à 9 h 30"
+        }
+      ],
+      "visible": true
+    },
+    {
+      "title": "Rosaire",
+      "icon": "sun",
+      "rows": [
+        {
+          "text": "Chapelet chaque mardi à 17 h 30 à la chapelle Sainte-Croix."
+        }
+      ],
+      "visible": true
+    },
+    {
+      "title": "Confession",
+      "icon": "heart",
+      "rows": [
+        {
+          "text": "Du mardi au samedi, avant et après chaque messe."
+        },
+        {
+          "text": "Chaque premier vendredi et premier samedi du mois, avant et après la messe."
+        },
+        {
+          "text": "Chaque dimanche, avant la messe."
+        }
+      ],
+      "visible": true
+    },
+    {
+      "title": "Messes à Guénange",
+      "icon": "clock",
+      "rows": [
+        {
+          "text": "Messe célébrée chaque dimanche à 11 h 15 à l’église située au 11 Saint-Benoît, 57310 Guénange."
+        }
+      ],
+      "visible": true
+    }
+  ],
+  "note": "Le programme hebdomadaire (horaires et lieux) peut exceptionnellement changer. Merci de consulter les annonces paroissiales en polonais ou de nous contacter pour confirmation."
+}

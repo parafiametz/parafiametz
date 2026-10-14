@@ -838,8 +838,25 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Church","name":"Parafia w Metz","url":"https://parafiametz.fr/","address":{"@type":"PostalAddress","streetAddress":"14, place Jeanne d'Arc","postalCode":"57000","addressLocality":"Metz","addressCountry":"FR"}}
 </script>
+
+<style id="locale-production-style">
+.language-switch{position:fixed;right:18px;top:16px;z-index:1000;display:flex;gap:6px;padding:5px;border-radius:32px;background:rgba(20,27,36,.76);border:1px solid rgba(245,239,222,.35);backdrop-filter:blur(6px)}
+.language-switch a{width:39px;height:33px;display:flex;justify-content:center;align-items:center;border-radius:20px;border:1px solid transparent;text-decoration:none}
+.language-switch a:hover{background:rgba(255,255,255,.14)}
+.language-switch a[aria-current="true"]{border-color:var(--gold-light);background:rgba(210,174,99,.22)}
+.language-switch a:focus-visible{outline:3px solid white;outline-offset:2px}
+.lang-flag{display:block;width:24px;height:16px;border:1px solid #bcbcbc;border-radius:2px;box-shadow:0 1px 2px rgba(0,0,0,.25)}
+.lang-flag-pl{background:linear-gradient(to bottom,#fff 50%,#dc143c 50%)}
+.lang-flag-fr{background:linear-gradient(to right,#0055a4 33.33%,#fff 33.33%,#fff 66.66%,#ef4135 66.66%)}
+@media(max-width:860px){
+  .language-switch{position:fixed;top:14px;right:15px;z-index:1000}
+  .brand-mark{padding-right:110px}
+}
+@media(max-width:360px){.brand-mark{padding-right:106px}.brand-name{font-size:1.21rem}}
+</style>
 </head>
 <body>
+<div class="language-switch" id="language-switch" role="group" aria-label="Wybór języka / Choix de langue"><a id="lang-pl" href="#home" lang="pl" hreflang="pl" aria-label="Polski" title="Polski"><span class="lang-flag lang-flag-pl" aria-hidden="true"></span></a><a id="lang-fr" href="?lang=fr#home" lang="fr" hreflang="fr" aria-label="Français" title="Français"><span class="lang-flag lang-flag-fr" aria-hidden="true"></span></a></div>
 
 <div class="shell">
 
@@ -1151,6 +1168,110 @@ sainte.segolene_metz@orange.fr</p>
   </main>
 </div>
 
+
+<script id="production-locale">
+const PAGE_LANG = new URLSearchParams(location.search).get('lang') === 'fr' ? 'fr' : 'pl';
+const localeContentPath = name => './content/' + (PAGE_LANG === 'fr' ? 'fr/' : '') + name + '.json';
+document.documentElement.lang = PAGE_LANG;
+document.documentElement.classList.toggle('lang-fr',PAGE_LANG === 'fr');
+const languageLinks = document.querySelectorAll('#language-switch a');
+function currentVisibleRoute() {
+  const button = document.querySelector('nav.menu button[data-section].active');
+  const active = button?.dataset.section ||
+    document.querySelector('.content > section.active')?.id?.replace(/^sec-/, '');
+  return '#' + (active || 'home');
+}
+function languageDestination(lang) {
+  const url = new URL(location.href);
+  if (lang === 'fr') url.searchParams.set('lang', 'fr');
+  else url.searchParams.delete('lang');
+  url.hash = currentVisibleRoute();
+  return url.pathname + url.search + url.hash;
+}
+function refreshLanguageLinks() {
+  languageLinks.forEach(link => {
+    link.setAttribute('aria-current', String(link.id === 'lang-' + PAGE_LANG));
+    link.href = languageDestination(link.id === 'lang-fr' ? 'fr' : 'pl');
+  });
+}
+languageLinks.forEach(link => {
+  link.addEventListener('focus', refreshLanguageLinks);
+  link.addEventListener('pointerdown', refreshLanguageLinks);
+  link.addEventListener('contextmenu', refreshLanguageLinks);
+  link.addEventListener('click', event => {
+    const destination = languageDestination(link.id === 'lang-fr' ? 'fr' : 'pl');
+    refreshLanguageLinks();
+    if (event.defaultPrevented || event.button !== 0 ||
+        event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+    event.preventDefault();
+    if (link.id === 'lang-' + PAGE_LANG &&
+        destination === location.pathname + location.search + location.hash) return;
+    window.location.assign(destination);
+  });
+});
+window.addEventListener('hashchange', refreshLanguageLinks);
+window.addEventListener('popstate', refreshLanguageLinks);
+window.addEventListener('pageshow', refreshLanguageLinks);
+refreshLanguageLinks();
+const frUi={
+  'Adres jest jeszcze do uzupełnienia i weryfikacji.':'Adresse à compléter et à vérifier.',
+  'Miejsce ':'Lieu ', 'Adres do uzupełnienia':'Adresse à compléter',
+  'Wyznacz trasę':'Itinéraire','Strona internetowa':'Site web',
+  'Dane do weryfikacji przed podróżą.':'Informations à vérifier avant le déplacement.',
+  'Nie udało się wczytać listy miejscowości.':'Impossible de charger la liste des villes.'
+};
+const uiText = value => PAGE_LANG === 'fr' ? (frUi[value] || value) : value;
+const lText=(polish,french)=>PAGE_LANG === 'fr'?french:polish;
+if (PAGE_LANG === 'fr') {
+  const text=(selector,label)=>{const el=document.querySelector(selector);if(el)el.textContent=label};
+  const navLabels={
+    home:'Accueil',msze:'Messes et célébrations',
+    aktualnosci:'Annonces paroissiales',wydarzenia:'Événements',
+    misja:'Notre mission',sakramenty:'Sacrements',
+    kosciol:'Église Sainte-Ségolène','misje-francja':'Missions polonaises en France',kontakt:'Contact'
+  };
+  Object.entries(navLabels).forEach(([section,label])=>{
+    const button=document.querySelector('nav.menu button[data-section="'+section+'"]');
+    if(!button)return;
+    const node=Array.from(button.childNodes).reverse().find(n=>n.nodeType===Node.TEXT_NODE);
+    if(node)node.textContent=' '+label;
+  });
+  for(const key of ['msze','aktualnosci','wydarzenia','misja','sakramenty','kosciol','misje-francja','kontakt'])
+    text('#sec-'+key+' > h2',navLabels[key]);
+  text('.sidebar-foot strong','MESSE DU DIMANCHE');
+  const foot=document.querySelector('.sidebar-foot');
+  if(foot)Array.from(foot.childNodes).filter(n=>n.nodeType===Node.TEXT_NODE).forEach(n=>n.textContent=' 9 h 30 · en polonais');
+  text('.page-foot','Communauté catholique polonaise de Metz · Paroisse Sainte-Ségolène');
+  text('.hero-eyebrow','Paroisse polonaise à Metz');
+  text('#aktualnosci-lede','Annonces paroissiales publiées en polonais.');
+  text('#sec-wydarzenia > .lede','Rencontres, catéchèse et célébrations de notre communauté, publiées en polonais.');
+  text('.events-static-title','Activités régulières de la communauté');
+  text('.events-upcoming-title','Événements à venir');
+  text('#announcements > .note','Chargement des annonces…');
+  text('#events > .note','Chargement des événements…');
+  text('#community-items > .note','Chargement des informations…');
+  const scriptWarning=document.querySelector('#sec-aktualnosci noscript');
+  if(scriptWarning)scriptWarning.textContent='Activez JavaScript pour consulter les annonces paroissiales.';
+  const mapNote=document.querySelector('.mission-map-note');
+  if(mapNote){
+    const nodes=Array.from(mapNote.childNodes).filter(n=>n.nodeType===Node.TEXT_NODE);
+    if(nodes[0])nodes[0].textContent='Survolez ou touchez une icône d’église pour afficher la ville. Ces données proviennent du répertoire PolskiFR et sont vérifiées progressivement. ';
+    if(nodes[1])nodes[1].textContent=' · mise à jour : ';
+    text('#misje-source','Voir la source');
+  }
+  const aria={
+    '#main-menu':'Navigation principale','.menu-toggle':'Ouvrir le menu',
+    '.mission-list-panel':'Liste des villes','#mission-info':'Informations sur la ville sélectionnée',
+    '#mission-info-close':'Fermer','.map-zoom-controls':'Zoom de la carte',
+    '#map-zoom-in':'Agrandir la carte','#map-zoom-out':'Réduire la carte',
+    '#map-zoom-reset':'Afficher toute la France'
+  };
+  Object.entries(aria).forEach(([sel,label])=>{const e=document.querySelector(sel);if(e)e.setAttribute('aria-label',label)});
+  document.title='Communauté catholique polonaise à Metz — Sainte-Ségolène';
+  const description=document.querySelector('meta[name="description"]');
+  if(description)description.setAttribute('content','Messes en polonais à Metz, sacrements, catéchèse et vie de la communauté catholique polonaise en Lorraine.');
+}
+</script>
 <script>
   function cmsDateKey(value) {
     const raw = String(value || '').trim();
@@ -1198,6 +1319,18 @@ sainte.segolene_metz@orange.fr</p>
     kontakt: ["Kontakt", "Napisz, zadzwoń lub odwiedź nas osobiście."]
   };
 
+
+  if(PAGE_LANG === 'fr')Object.assign(titles,{
+    home:['Communauté catholique polonaise à Metz','Foi et culture polonaise au sein de la paroisse Sainte-Ségolène.'],
+    msze:['Messes et célébrations','Horaires et lieux des célébrations en polonais.'],
+    aktualnosci:['Annonces paroissiales','Informations de la paroisse publiées en polonais.'],
+    wydarzenia:['Événements','Catéchèse, rencontres et célébrations de la communauté.'],
+    misja:['Notre mission','Pastorale des Polonais à Metz et en Lorraine.'],
+    sakramenty:['Sacrements','Baptême, communion, confirmation, mariage et confession en polonais.'],
+    kosciol:['Église Sainte-Ségolène','L’une des plus anciennes églises paroissiales de Metz.'],
+    'misje-francja':['Missions polonaises en France','Trouvez les lieux de pastorale catholique polonaise en France.'],
+    kontakt:['Contact','Écrivez-nous, téléphonez-nous ou venez nous rencontrer.']
+  });
   const buttons = document.querySelectorAll('nav.menu button');
   const sections = document.querySelectorAll('.content section');
   const hero = document.getElementById('hero');
@@ -1221,6 +1354,7 @@ sainte.segolene_metz@orange.fr</p>
       document.querySelector('nav.menu').classList.remove('open');
       if (menuToggle) menuToggle.setAttribute('aria-expanded', 'false');
       if (location.hash !== '#' + target) history.pushState(null, '', '#' + target);
+      refreshLanguageLinks();
       window.scrollTo({top:0, behavior:'smooth'});
     });
   });
@@ -1333,7 +1467,7 @@ function renderSafeRichText(container, value, { allowImages = false } = {}) {
     const response = await fetch('./content/aktualnosci.json', {cache: 'no-cache'});
     if (!response.ok) throw new Error('Aktualności request failed');
     const data = await response.json();
-    if (typeof data.lede === 'string' && document.getElementById('aktualnosci-lede')) document.getElementById('aktualnosci-lede').textContent = data.lede;
+    if (PAGE_LANG !== 'fr' && typeof data.lede === 'string' && document.getElementById('aktualnosci-lede')) document.getElementById('aktualnosci-lede').textContent = data.lede;
     const items = Array.isArray(data.items) ? data.items : [];
     const published = items
       .map((item, index) => ({ item, index }))
@@ -1378,11 +1512,11 @@ function renderSafeRichText(container, value, { allowImages = false } = {}) {
           const toggle = document.createElement('button');
           toggle.type = 'button';
           toggle.className = 'text-toggle';
-          toggle.textContent = 'Czytaj więcej';
+          toggle.textContent = lText('Czytaj więcej','Lire la suite');
           toggle.setAttribute('aria-expanded', 'false');
           toggle.addEventListener('click', () => {
             const collapsed = body.classList.toggle('is-collapsed');
-            toggle.textContent = collapsed ? 'Czytaj więcej' : 'Zwiń';
+            toggle.textContent = collapsed ? lText('Czytaj więcej','Lire la suite') : lText('Zwiń','Réduire');
             toggle.setAttribute('aria-expanded', String(!collapsed));
           });
           article.append(toggle);
@@ -1400,12 +1534,12 @@ function renderSafeRichText(container, value, { allowImages = false } = {}) {
     if (!published.length) {
       const empty = document.createElement('p');
       empty.className = 'note';
-      empty.textContent = 'Obecnie brak nowych aktualności.';
+      empty.textContent = lText('Obecnie brak nowych aktualności.','Aucune annonce paroissiale pour le moment.');
       fragment.append(empty);
     }
     container.replaceChildren(fragment);
   } catch (error) {
-    container.textContent = 'Nie udało się wczytać ogłoszeń. Odśwież stronę lub spróbuj ponownie później.';
+    container.textContent = lText('Nie udało się wczytać ogłoszeń. Odśwież stronę lub spróbuj ponownie później.','Impossible de charger les annonces. Actualisez la page ou réessayez plus tard.');
     console.error('Loading announcements:', error);
   }
 })();
@@ -1467,13 +1601,23 @@ document.addEventListener('keydown', (event) => {
     const data = await response.json();
 
     const communityContainer = document.getElementById('community-items');
-    const communityItems = Array.isArray(data.communityItems) ? data.communityItems : [];
+    let communityItems = Array.isArray(data.communityItems) ? data.communityItems : [];
+    if (PAGE_LANG === 'fr') {
+      try {
+        const frResponse = await fetch('./content/fr/wydarzenia-stale.json', {cache:'no-store'});
+        if (!frResponse.ok) throw new Error('French regular events unavailable');
+        const frenchData = await frResponse.json();
+        if (!Array.isArray(frenchData.communityItems)) throw new Error('Malformed French regular events');
+        communityItems = frenchData.communityItems;
+      } catch (error) { console.error('Regular events translation failed:',error); }
+    }
     const communityDialog = document.getElementById('community-dialog');
     const communityDialogTitle = document.getElementById('community-dialog-title');
     const communityDialogBody = document.getElementById('community-dialog-body');
     const communityDialogClose = communityDialog?.querySelector('.community-dialog-close');
     let communityDialogOpener = null;
     if (communityDialog && communityDialogClose) {
+      if(PAGE_LANG === 'fr')communityDialogClose.setAttribute('aria-label','Fermer les détails');
       communityDialogClose.addEventListener('click', () => communityDialog.close());
       communityDialog.addEventListener('click', event => {
         if (event.target !== communityDialog) return;
@@ -1520,13 +1664,13 @@ document.addEventListener('keydown', (event) => {
             card.setAttribute('role', 'button');
             card.tabIndex = 0;
             card.setAttribute('aria-haspopup', 'dialog');
-            card.setAttribute('aria-label', 'Otwórz szczegóły: ' + (item.title || 'wydarzenie'));
+            card.setAttribute('aria-label', lText('Otwórz szczegóły: ','Ouvrir les détails : ') + (item.title || lText('wydarzenie','activité')));
             const more = document.createElement('span');
             more.className = 'community-card-more';
-            more.textContent = 'Czytaj więcej →';
+            more.textContent = lText('Czytaj więcej →','Lire la suite →');
             content.append(more);
             const openDetails = () => {
-              communityDialogTitle.textContent = item.title || 'Szczegóły wydarzenia';
+              communityDialogTitle.textContent = item.title || lText('Szczegóły wydarzenia','Détails de l’activité');
               renderSafeRichText(communityDialogBody, item.details);
               communityDialogOpener = card;
               communityDialog.showModal();
@@ -1548,7 +1692,7 @@ document.addEventListener('keydown', (event) => {
       if (!communityFragment.childNodes.length) {
         const empty = document.createElement('p');
         empty.className = 'note';
-        empty.textContent = 'Brak stałych informacji.';
+        empty.textContent = lText('Brak stałych informacji.','Aucune activité régulière disponible.');
         communityFragment.append(empty);
       }
 
@@ -1641,11 +1785,11 @@ document.addEventListener('keydown', (event) => {
           const toggle = document.createElement('button');
           toggle.type = 'button';
           toggle.className = 'text-toggle';
-          toggle.textContent = 'Czytaj więcej';
+          toggle.textContent = lText('Czytaj więcej','Lire la suite');
           toggle.setAttribute('aria-expanded', 'false');
           toggle.addEventListener('click', () => {
             const collapsed = body.classList.toggle('is-collapsed');
-            toggle.textContent = collapsed ? 'Czytaj więcej' : 'Zwiń';
+            toggle.textContent = collapsed ? lText('Czytaj więcej','Lire la suite') : lText('Zwiń','Réduire');
             toggle.setAttribute('aria-expanded', String(!collapsed));
           });
           article.append(toggle);
@@ -1671,24 +1815,24 @@ document.addEventListener('keydown', (event) => {
     if (!published.length) {
       const empty = document.createElement('p');
       empty.className = 'note';
-      empty.textContent = 'Obecnie brak opublikowanych wydarzeń.';
+      empty.textContent = lText('Obecnie brak opublikowanych wydarzeń.','Aucun événement publié pour le moment.');
       fragment.append(empty);
     } else if (pastCount) {
       if (!fragment.childNodes.length) {
         const emptyUpcoming = document.createElement('p');
         emptyUpcoming.className = 'note';
-        emptyUpcoming.textContent = 'Obecnie brak nadchodzących wydarzeń.';
+        emptyUpcoming.textContent = lText('Obecnie brak nadchodzących wydarzeń.','Aucun événement à venir pour le moment.');
         fragment.append(emptyUpcoming);
       }
       const pastTitle = document.createElement('h3');
       pastTitle.className = 'events-past-title';
-      pastTitle.textContent = 'Minione wydarzenia';
+      pastTitle.textContent = lText('Minione wydarzenia','Événements passés');
       fragment.append(pastTitle, pastFragment);
     }
 
     container.replaceChildren(fragment);
   } catch (error) {
-    container.textContent = 'Nie udało się wczytać wydarzeń. Odśwież stronę lub spróbuj ponownie później.';
+    container.textContent = lText('Nie udało się wczytać wydarzeń. Odśwież stronę lub spróbuj ponownie później.','Impossible de charger les événements. Actualisez la page ou réessayez plus tard.');
     console.error('Loading events:', error);
   }
 })();
@@ -1716,7 +1860,7 @@ function cmsIcon(name, fallback = 'church') {
 
 (async function loadMassSchedule() {
   try {
-    const response = await fetch('./content/msze.json', {cache:'no-store'});
+    const response = await fetch(localeContentPath('msze'), {cache:'no-store'});
     if (!response.ok) throw new Error('Msze request failed: ' + response.status);
     const data = await response.json();
 
@@ -1766,7 +1910,7 @@ function cmsIcon(name, fallback = 'church') {
 
 (async function loadSacraments() {
   try {
-    const response = await fetch('./content/sakramenty.json', {cache:'no-store'});
+    const response = await fetch(localeContentPath('sakramenty'), {cache:'no-store'});
     if (!response.ok) throw new Error('Sakramenty request failed: ' + response.status);
     const data = await response.json();
 
@@ -1804,7 +1948,7 @@ function cmsIcon(name, fallback = 'church') {
 
 (async function loadContactPage() {
   try {
-    const response = await fetch('./content/kontakt.json', {cache:'no-store'});
+    const response = await fetch(localeContentPath('kontakt'), {cache:'no-store'});
     if (!response.ok) throw new Error('Kontakt request failed: ' + response.status);
     const data = await response.json();
 
@@ -1952,16 +2096,16 @@ async function loadEditableSection(path, apply) {
     apply(await response.json());
   } catch(error) { console.error('Loading editable section:',error); }
 }
-loadEditableSection('./content/strona-glowna.json', data => {
+loadEditableSection(localeContentPath('strona-glowna'), data => {
   setCmsText('home-lede',data.lede); setCmsText('home-mass-label',data.massLabel); setCmsText('home-mass-value',data.massValue);
   setCmsText('home-address-label',data.addressLabel); setCmsText('home-address-value',data.addressValue); setCmsText('home-contact-label',data.contactLabel); setCmsText('home-contact-value',data.contactValue);
   setCmsText('home-paragraph1',data.paragraph1); setCmsText('home-callout',data.callout);
   if (typeof data.paragraph2==='string') renderSafeRichText(document.getElementById('home-paragraph2'),data.paragraph2);
 });
-loadEditableSection('./content/misja.json', data => {
+loadEditableSection(localeContentPath('misja'), data => {
   setCmsText('misja-lede',data.lede); setCmsText('misja-paragraph1',data.paragraph1); setCmsText('misja-paragraph2',data.paragraph2); setCmsText('misja-callout',data.callout);
 });
-loadEditableSection('./content/kosciol.json', data => {
+loadEditableSection(localeContentPath('kosciol'), data => {
   setCmsText('kosciol-lede',data.lede); setCmsText('kosciol-paragraph1',data.paragraph1);
   if (typeof data.paragraph2==='string') renderSafeRichText(document.getElementById('kosciol-paragraph2'),data.paragraph2);
   setCmsText('kosciol-address-label',data.addressLabel); setCmsText('kosciol-address-value',data.addressValue); setCmsText('kosciol-patron-label',data.patronLabel); setCmsText('kosciol-patron-value',data.patronValue); setCmsText('kosciol-feast-label',data.feastLabel); setCmsText('kosciol-feast-value',data.feastValue);
@@ -1978,7 +2122,15 @@ loadEditableSection('./content/kosciol.json', data => {
     const response=await fetch('./content/misje-francja.json',{cache:'no-store'});
     if(!response.ok) throw new Error('Misje Francja request failed');
     const data=await response.json();
-    if(typeof data.lede==='string') document.getElementById('misje-francja-lede').textContent=data.lede;
+    if(typeof data.lede==='string' && PAGE_LANG!=='fr') document.getElementById('misje-francja-lede').textContent=data.lede;
+    if(PAGE_LANG==='fr') {
+      try {
+        const frResponse=await fetch('./content/fr/misje-francja.json',{cache:'no-store'});
+        if(frResponse.ok){const fr=await frResponse.json();
+          if(typeof fr.lede==='string')document.getElementById('misje-francja-lede').textContent=fr.lede;
+          if(typeof fr.sourceLabel==='string')document.getElementById('misje-source').textContent=fr.sourceLabel;}
+      }catch(err){console.error('French map metadata:',err)}
+    }
     if(typeof data.updated==='string') document.getElementById('misje-updated').textContent=data.updated;
     if(typeof data.sourceUrl==='string' && /^https:\/\//i.test(data.sourceUrl)) document.getElementById('misje-source').href=data.sourceUrl;
     const items=(Array.isArray(data.items)?data.items:[]).filter(x=>x&&x.visible!==false&&typeof x.city==='string'&&Number.isFinite(Number(x.lat))&&Number.isFinite(Number(x.lon))).sort((a,b)=>a.city.localeCompare(b.city,'pl'));
@@ -2049,20 +2201,20 @@ loadEditableSection('./content/kosciol.json', data => {
       infoBody.replaceChildren();
       const locations=Array.isArray(item.locations)?item.locations:[];
       if(!locations.length){
-        const p=document.createElement('p'); p.className='mission-address'; p.textContent='Adres jest jeszcze do uzupełnienia i weryfikacji.'; infoBody.append(p);
+        const p=document.createElement('p'); p.className='mission-address'; p.textContent=uiText('Adres jest jeszcze do uzupełnienia i weryfikacji.'); infoBody.append(p);
       } else {
         locations.forEach((loc,index)=>{
           const block=document.createElement('div'); block.className='mission-location';
-          if(loc.name || locations.length>1){const strong=document.createElement('strong'); strong.textContent=loc.name||('Miejsce '+(index+1)); block.append(strong);}
-          const p=document.createElement('p'); p.className='mission-address'; p.textContent=loc.address||'Adres do uzupełnienia'; block.append(p);
+          if(loc.name || locations.length>1){const strong=document.createElement('strong'); strong.textContent=loc.name||(uiText('Miejsce ')+(index+1)); block.append(strong);}
+          const p=document.createElement('p'); p.className='mission-address'; p.textContent=loc.address||uiText('Adres do uzupełnienia'); block.append(p);
           const links=document.createElement('div'); links.className='mission-links';
           if(loc.address){
-            const route=document.createElement('a'); route.target='_blank'; route.rel='noopener noreferrer'; route.href='https://www.google.com/maps/dir/?api=1&destination='+encodeURIComponent(loc.address); route.textContent='Wyznacz trasę'; links.append(route);
+            const route=document.createElement('a'); route.target='_blank'; route.rel='noopener noreferrer'; route.href='https://www.google.com/maps/dir/?api=1&destination='+encodeURIComponent(loc.address); route.textContent=uiText('Wyznacz trasę'); links.append(route);
           }
           const website=safeHttpUrl(loc.website);
-          if(website){const a=document.createElement('a'); a.target='_blank'; a.rel='noopener noreferrer'; a.href=website; a.textContent='Strona internetowa'; links.append(a);}
+          if(website){const a=document.createElement('a'); a.target='_blank'; a.rel='noopener noreferrer'; a.href=website; a.textContent=uiText('Strona internetowa'); links.append(a);}
           block.append(links);
-          if(loc.verified!==true){const note=document.createElement('p'); note.className='mission-unverified'; note.textContent='Dane do weryfikacji przed podróżą.'; block.append(note);}
+          if(loc.verified!==true){const note=document.createElement('p'); note.className='mission-unverified'; note.textContent=uiText('Dane do weryfikacji przed podróżą.'); block.append(note);}
           infoBody.append(block);
         });
       }
@@ -2203,7 +2355,7 @@ loadEditableSection('./content/kosciol.json', data => {
     applyMapView();
   }catch(error){
     console.error('Loading Misje Francja:',error);
-    list.textContent='Nie udało się wczytać listy miejscowości.';
+    list.textContent=uiText('Nie udało się wczytać listy miejscowości.');
   }
 })();
 </script>
