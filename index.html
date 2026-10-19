@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Parafia w Metz działa przy francuskiej parafii Sainte-Ségolène i od lat pozostaje duchowym domem dla polskiej diaspory w regionie. To miejsce, gdzie wiara łączy się z pielęgnowaniem języka i tradycji — od niedzielnej Eucharystii po sobotnią katechezę dla najmłodszych.">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://gc.zgo.at; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://parafiametz.goatcounter.com; connect-src 'self' https://parafiametz.goatcounter.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
 <link rel="canonical" href="https://parafiametz.fr/">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="pl_PL">
@@ -2556,6 +2556,42 @@ loadEditableSection(localeContentPath('kosciol'), data => {
       window.addEventListener('focus',render);
     })
     .catch(error=>console.error('Loading next Sunday Mass:',error));
+})();
+</script>
+<!-- Privacy-minimised, cookie-free aggregate audience measurement. No visible widget. -->
+<script>
+(function () {
+  'use strict';
+  // Only the official parish domain may contribute production statistics.
+  if (location.hostname !== 'parafiametz.fr' && location.hostname !== 'www.parafiametz.fr') return;
+  var lastPath = '';
+  function viewPath() {
+    var language = new URLSearchParams(location.search).get('lang') === 'fr' ? 'fr' : 'pl';
+    var route = decodeURIComponent(location.hash.slice(1) || 'home');
+    // Keep paths finite, prevent arbitrary user-supplied fragments from becoming analytics records.
+    if (!/^[a-zA-Z0-9_\/\-]{1,180}$/.test(route)) route = 'home';
+    return '/' + language + '/' + route;
+  }
+  function record() {
+    if (!window.goatcounter || typeof window.goatcounter.count !== 'function') return;
+    var path = viewPath();
+    if (path === lastPath) return;
+    lastPath = path;
+    window.goatcounter.count({path:path, title:document.title, referrer:''});
+  }
+  window.goatcounter = {no_onload:true, no_events:true, referrer:''};
+  var script = document.createElement('script');
+  script.src = 'https://gc.zgo.at/count.js';
+  script.async = true;
+  script.dataset.goatcounter = 'https://parafiametz.goatcounter.com/count';
+  script.onload = record;
+  document.head.appendChild(script);
+  window.addEventListener('hashchange', record);
+  window.addEventListener('popstate', record);
+  // The parish navigation uses pushState, which does not emit hashchange.
+  document.addEventListener('click', function () {
+    window.setTimeout(record, 0);
+  });
 })();
 </script>
 </body>
