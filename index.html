@@ -2584,7 +2584,17 @@ loadEditableSection(localeContentPath('kosciol'), data => {
   script.src = 'https://gc.zgo.at/count.js';
   script.async = true;
   script.dataset.goatcounter = 'https://parafiametz.goatcounter.com/count';
-  script.onload = record;
+  script.onload = function () {
+    // One fixed path across every language and section, deduplicated by
+    // GoatCounter's 8-hour server-side Sessions mechanism.
+    // This is a session estimate, not a count of identified human beings.
+    window.goatcounter.count({
+      path:'/statystyki/odwiedziny',
+      title:'Cała witryna — wizyty (8 h)',
+      referrer:''
+    });
+    record();
+  };
   document.head.appendChild(script);
   window.addEventListener('hashchange', record);
   window.addEventListener('popstate', record);
