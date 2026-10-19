@@ -2577,7 +2577,7 @@ loadEditableSection(localeContentPath('kosciol'), data => {
     var path = viewPath();
     if (path === lastPath) return;
     lastPath = path;
-    window.goatcounter.count({path:path, title:document.title, referrer:''});
+    window.goatcounter.count({path:path, title:path.endsWith('/aktualnosci') ? (path.startsWith('/fr/') ? 'Annonces paroissiales' : 'Ogłoszenia duszpasterskie') : document.title, referrer:''});
   }
   window.goatcounter = {no_onload:true, no_events:true, referrer:''};
   var script = document.createElement('script');
