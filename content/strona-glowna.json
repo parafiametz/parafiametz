@@ -27,5 +27,8 @@
   "sundayMassCancelledDate": "",
   "sundayMassCancellationReasonPl": "",
   "sundayMassCancellationReasonFr": "",
-  "sundayMassReturnSeason": "summer"
+  "sundayMassReturnSeason": "summer",
+  "sundayMassNoticeDate": "",
+  "sundayMassNoticePl": "",
+  "sundayMassNoticeFr": ""
 }
