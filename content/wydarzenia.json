@@ -1,8 +1,16 @@
 {
   "communityItems": [
     {
-      "title": "Katecheza dla dzieci",
+      "title": "Katecheza dla dzieci - Metz",
       "body": "W soboty w roku szkolnym, godz. 10:00–12:00, w Salce Parafialnej na Plebanii",
+      "expandable": false,
+      "details": "<p></p>",
+      "icon": "book",
+      "visible": true
+    },
+    {
+      "title": "Katacheza dla dzieci - Guénange",
+      "body": "Serdecznie zapraszamy na niedzielne Msze Święte w języku polskim, które odbywają się w każdą niedzielę o godzinie 11:15 w Kaplicy Saint-Benoît.",
       "expandable": false,
       "details": "<p></p>",
       "icon": "book",
