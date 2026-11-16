@@ -103,6 +103,17 @@
       "alignment": "justify",
       "image": "/media/images/affiche-florale-commemorative-de-novembre.png",
       "published": true
+    },
+    {
+      "title": "Bal Karnawałowy 2027",
+      "date": "06/02/2027",
+      "endDate": "06/02/2027",
+      "time": "18:00",
+      "place": "sala Pierre Meller, 57240 Nilvange",
+      "body": "<p><strong>Polskie Towarzystwo Krzewienia Oświaty w Nilvange zaprasza na wspólną zabawę karnawałową!</strong></p><p>Już 6 lutego 2027 roku przeniesiemy się w świat elegancji, romantyzmu i dworskiego szyku, inspirowany klimatem serialu <em>Bridgertonowie</em>.</p><p>Tym razem będzie to <strong>bal maskowy</strong>, dlatego zachęcamy wszystkich uczestników do przygotowania wyjątkowych strojów!</p><p>Długie, eleganckie suknie, smokingi, maski, szykowne dodatki i stroje inspirowane modą epoki regencji mile widziane! Niech tego wieczoru każdy poczuje się jak gość na królewskim balu.</p><p>Przed nami wieczór pełen muzyki, tańca, dobrej zabawy i niezapomnianych chwil w niezwykłej atmosferze.</p><p></p>",
+      "alignment": "justify",
+      "image": "/media/images/img-20261109-wa0002.jpg",
+      "published": false
     }
   ]
 }
