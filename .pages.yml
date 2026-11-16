@@ -85,27 +85,27 @@ content:
       - name: massLabel
         label: Etykieta Mszy
         type: string
-        required: true
+        required: false
       - name: massValue
         label: Godzina Mszy
         type: string
-        required: true
+        required: false
       - name: addressLabel
         label: Etykieta adresu
         type: string
-        required: true
+        required: false
       - name: addressValue
         label: Adres
         type: string
-        required: true
+        required: false
       - name: contactLabel
         label: Etykieta kontaktu
         type: string
-        required: true
+        required: false
       - name: contactValue
         label: Kontakt
         type: string
-        required: true
+        required: false
       - name: paragraph1
         label: Pierwszy akapit
         type: text
